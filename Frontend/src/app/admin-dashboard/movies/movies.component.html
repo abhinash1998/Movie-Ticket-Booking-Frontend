@@ -1,0 +1,48 @@
+<button mat-flat-button color="primary" (click)="navigateToAddMoviePage()">Add New Movie</button>
+
+<h4>All Movies</h4>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="moviesDisplay">
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Movie Name</th>
+      <td mat-cell *matCellDef="let movie"> {{movie.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="releaseDate">
+      <th mat-header-cell *matHeaderCellDef>Release Date</th>
+      <td mat-cell *matCellDef="let movie"> {{movie.releaseDate | date: 'longDate'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="director">
+      <th mat-header-cell *matHeaderCellDef>Director</th>
+      <td mat-cell *matCellDef="let movie"> {{movie.director}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cast">
+      <th mat-header-cell *matHeaderCellDef>Cast</th>
+      <td mat-cell *matCellDef="let movie"> {{movie.cast}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="durationInMins">
+      <th mat-header-cell *matHeaderCellDef>Duration</th>
+      <td mat-cell *matCellDef="let movie"> {{convertMinuteToHour(movie.durationInMins)
+        }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let movie" class="action-link">
+        <button mat-flat-button color="warn" (click)="openDialog(movie._id)">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="pageSizeOptions" [length]="length" [pageSize]="pageSize" showFirstLastButtons
+    aria-label="Select page">
+  </mat-paginator>
+</div>

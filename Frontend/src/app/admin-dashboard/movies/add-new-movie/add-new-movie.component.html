@@ -1,0 +1,88 @@
+<div class="add-movie">
+
+  <h4>Add New Movie</h4>
+
+  <form class="example-form" (ngSubmit)='addNewMovie()' [formGroup]='movieForm'>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Movie Name</mat-label>
+      <input type="text" matInput formControlName="movieName">
+      <mat-error>Movie Name is <strong>required</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Release Date</mat-label>
+      <input type="date" matInput formControlName="releaseDate">
+      <mat-error>Release Date is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Cast</mat-label>
+      <input type="text" matInput formControlName="cast">
+      <mat-error>
+        Cast is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Director</mat-label>
+      <input type="text" matInput formControlName="director">
+      <mat-error>
+        Director is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea type="text" matInput formControlName="description"></textarea>
+      <mat-error>
+        Description is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Genre</mat-label>
+      <input type="text" matInput formControlName="genre">
+      <mat-error>
+        Genre is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Language</mat-label>
+      <input type="text" matInput formControlName="language">
+      <mat-error>
+        Language is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-label>Banner</mat-label>
+    <input type="file" (change)="uploadBanner($event)">
+
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Trailer Link</mat-label>
+      <input type="text" matInput formControlName="trailerLink">
+      <mat-error>
+        Trailer Link is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Duration</mat-label>
+      <input type="number" matInput formControlName="duration">
+      <mat-error>
+        Movie Duration is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Format</mat-label>
+      <input type="text" matInput formControlName="format">
+    </mat-form-field>
+
+    <button mat-flat-button color="primary">Save Movie</button>
+  </form>
+</div>
