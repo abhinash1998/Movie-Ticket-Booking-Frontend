@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Add New Theatre</h1>
+
+<mat-dialog-content>
+    <form class="example-form" (ngSubmit)='addNewTheatre()' [formGroup]='theatreForm'>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Theatre Name</mat-label>
+            <input type="text" matInput formControlName="theatreName">
+            <mat-error>Theatre Name is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Theatre Location</mat-label>
+            <input type="text" matInput formControlName="theatreLocation">
+            <mat-error>Theatre Location is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Theatre Capacity</mat-label>
+            <input type="number" matInput formControlName="theatreCapacity">
+            <mat-error>
+                Theatre Capacity is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <button mat-flat-button color="primary">Save Movie</button>
+    </form>
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+    <button mat-flat-button color="warn" [mat-dialog-close]>Cancel</button>
+</div>
