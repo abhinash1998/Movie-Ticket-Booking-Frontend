@@ -1,0 +1,52 @@
+<h1 mat-dialog-title>Add Show</h1>
+
+<mat-dialog-content>
+    <form class="example-form" (ngSubmit)='addShow()' [formGroup]='showForm'>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Show Date</mat-label>
+            <input type="date" matInput formControlName="showDate">
+            <mat-error>Show Date is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Start Time</mat-label>
+            <input matInput formControlName="startTime" matTimepicker>
+            <mat-error>Start Time is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+         
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>End Time</mat-label>
+            <input matInput formControlName="endTime" matTimepicker>
+            <mat-error>End Time is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Select Movie</mat-label>
+            <mat-select formControlName="movieControl" required>
+              <mat-option *ngFor="let movie of moviesDisplay" [value]="movie.title">
+                {{movie.title}}
+              </mat-option>
+            </mat-select>
+            <mat-error>Please choose an Movie</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Select Theatre</mat-label>
+            <mat-select formControlName="theatreControl" required>
+              <mat-option *ngFor="let theatre of theatresDisplay" [value]="theatre.theatreName">
+                {{theatre.theatreName}}
+              </mat-option>
+            </mat-select>
+            <mat-error>Please choose an Theatre</mat-error>
+          </mat-form-field>
+          
+        <button mat-flat-button color="primary">Register Show</button>
+    </form>
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+    <button mat-flat-button id="warn" color="warn" [mat-dialog-close]>Cancel</button>
+</div>
