@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+    <span>My Application</span>
+    <span class="fill-remaining-space"></span>
+    <a mat-button *ngIf="login">Welcome {{userFullName}}</a>
+    <a mat-button routerLink="/TicketBooking/dashboard">Admin Dashboard</a>
+    <a mat-button routerLink="/TicketBooking/movies">Movies</a>
+    <a mat-button routerLink="/TicketBooking/theatres">Theatres</a>
+    <a mat-button routerLink="/TicketBooking/shows">Shows</a>
+    <a mat-button routerLink="/TicketBooking/addCity">City</a>
+    <a mat-button routerLink="/TicketBooking/home">Bookings</a>
+    <a mat-button  *ngIf="login" (click)="logOutAdmin()" routerLink="/user/login">Logout</a>
+  </mat-toolbar>

@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+    <span>Book My Show</span>
+    <a mat-button *ngIf="login">Welcome {{userFullName}}</a>
+
+    <span class="fill-remaining-space"></span>
+    <a mat-button *ngIf="!login" routerLink="/user/login">Login</a>
+    <a mat-button *ngIf="!login" routerLink="/user/register">Register</a>
+    <a mat-button *ngIf="login" (click)="logOutUser()" routerLink="/user/login">Logout</a>
+
+    <mat-select (selectionChange)="onChange()" [(ngModel)]="selectedCity">
+        <mat-option *ngFor="let city of cityDisplay" [value]="city.value">
+            {{city.option}}
+        </mat-option>
+    </mat-select>
+
+</mat-toolbar>
