@@ -1,6 +1,6 @@
 export interface IMovie
 {
-    movieName: string,
+    title: string,
     releaseDate: Date,
     cast: string,
     director: string,
@@ -8,7 +8,7 @@ export interface IMovie
     genre: string,
     language: string,
     trailerLink: string,
-    duration: string,
+    durationInMins: string,
     format: string,
     imagePath: string
 
