@@ -1,0 +1,39 @@
+<app-customer-navbar></app-customer-navbar>
+<div class="add-user">
+
+    <h4>Register with us</h4>
+    <form class="example-form" (ngSubmit)='register()' [formGroup]='signUpForm'>
+        <mat-error *ngIf="error"> {{errorMessage}}</mat-error>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Full Name</mat-label>
+            <input type="text" matInput formControlName="fullName">
+            <mat-error>Full Name is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email">
+
+            <mat-error>Email is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Phone Number</mat-label>
+            <input type="number" matInput formControlName="phoneNumber">
+            <mat-error>Phone Number is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password">
+            <mat-error>Password is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+
+        <button mat-flat-button color="primary">Register Now</button>
+    </form>
+</div>
