@@ -1,0 +1,16 @@
+<app-customer-navbar></app-customer-navbar>
+<h3 *ngIf="onSelectCity">Movies In {{selectedCity}}</h3>
+
+<div *ngIf="onSelectCity" class="card-wrapper">
+
+    <mat-card class="example-card" *ngFor="let movie of moviesDisplay"
+        [routerLink]="['/user/movie-details',movie.movieId._id,'city',selectedCity]">
+
+        <img mat-card-image [src]="movie.movieId.imagePath">
+
+        <mat-card-content>
+            <h4>{{movie.movieId.title}}</h4>
+            <p>{{movie.movieId.language}}</p>
+        </mat-card-content>
+    </mat-card>
+</div>

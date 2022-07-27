@@ -13,6 +13,7 @@ export class MovieListByCityNameComponent implements OnInit {
   movieActionIsActive: boolean = true;
   onSelectCity: boolean = false;
   selectedCity: string = "";
+
   constructor(private userContext: UserService, private cityContext: CityService) { }
 
   ngOnInit(): void {
