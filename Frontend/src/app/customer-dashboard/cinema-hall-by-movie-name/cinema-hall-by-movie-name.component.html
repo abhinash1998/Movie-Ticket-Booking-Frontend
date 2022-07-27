@@ -1,0 +1,18 @@
+
+<app-customer-navbar></app-customer-navbar>
+
+<div *ngFor="let startTime of showDates">
+    <button (click)="clickCard(startTime.value)" id="primary" mat-flat-button color="primary">{{startTime.value | date:"EEEE, MMMM d"}}</button>
+</div>
+
+<mat-card class="example-card" *ngFor="let show of s1"> 
+    <mat-card-content>
+        <h4>{{show.cinemaHall}}</h4>
+        <div *ngFor="let startTime of show.startDate">
+            <button mat-flat-button id="primary"  color="primary">{{startTime.value | date:"hh:mm a"}}</button>
+        </div>
+    
+    </mat-card-content>
+  </mat-card>
+
+
