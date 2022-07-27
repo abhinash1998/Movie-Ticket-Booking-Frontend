@@ -1,0 +1,25 @@
+.example-card {
+    width: 44%;
+    height: 67%;
+    cursor: pointer;
+    margin-left: 48%;
+    margin-top: -24%;
+}
+  
+.movie-card{
+    max-width: 700px;
+    margin-left: 2%;
+}  
+
+iframe{
+    margin-left: 2%;
+    margin-top: 3%;
+}
+h4{
+    margin-top: 6%;
+    margin-left: 2%;
+}
+
+.mat-flat-button{
+    margin-left: 75%;
+}

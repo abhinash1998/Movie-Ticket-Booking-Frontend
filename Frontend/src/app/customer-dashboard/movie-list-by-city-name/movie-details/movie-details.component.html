@@ -1,0 +1,33 @@
+<app-customer-navbar></app-customer-navbar>
+
+    <iframe width="560" height="315" 
+    [src]="movieDetails.trailerLink" 
+    frameborder="0"
+     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen></iframe>
+
+    <mat-card class="example-card"> 
+        <mat-card-content>
+            <h4>{{movieDetails.title}}</h4>
+            <p>Cast: {{movieDetails.cast}}</p>
+            <p>Director: {{movieDetails.director}}</p>
+            <p>Format: {{movieDetails.format}}</p>
+            <p>Language: {{movieDetails.language}}</p>
+            <p>Release Date: {{movieDetails.releaseDate | date: 'longDate'}}</p>
+            <p>Duration: {{convertMinuteToHour(movieDetails.durationInMins)}}</p>
+            <p>Genre: {{movieDetails.genre}}</p>
+            <p>Release Date: {{movieDetails.releaseDate | date: 'longDate'}}</p>
+        </mat-card-content>
+
+        <mat-card-footer>
+            <button mat-flat-button color="primary"  
+            [routerLink]="['/user/cinema-hall',movieDetails._id,'city',cityName]">Book Tickets</button>
+        </mat-card-footer>
+      </mat-card>
+
+    <h4>About the movie</h4>  
+    <mat-card class="movie-card"> 
+        <mat-card-content>
+    <p>{{movieDetails.description}}</p>
+    </mat-card-content>
+    </mat-card>
