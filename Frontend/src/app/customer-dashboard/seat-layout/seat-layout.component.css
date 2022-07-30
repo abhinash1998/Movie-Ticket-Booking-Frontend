@@ -1,0 +1,69 @@
+
+table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-color: grey;
+}
+
+td {
+  width: 40px;
+  font-weight: 600;
+  font-size: 1em;
+  padding-top: 7px;
+  height: 24px;
+  color: #fff;
+}
+
+.body {
+  background: url(../../../assets/Images/banner.jpg) no-repeat center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -ms-background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Source Sans Pro', sans-serif;
+  margin-bottom: 1%;
+}
+
+.seats{
+  height: 84%;
+  width: 52%;
+  cursor: pointer;
+  
+}
+
+input[type="checkbox"]:checked {
+  filter: invert(100%) hue-rotate(18deg) brightness(1.7);
+
+}
+
+input[type="checkbox"] { 
+  outline: 0.5px solid green;
+}
+
+ul.seat_w3ls {
+  margin: 2em 0;
+}
+
+.smallBox::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.greenBox::before {
+  content: "";
+  background: Green;
+}
+
+.emptyBox::before {
+  content: "";
+  box-shadow: inset 0px 2px 3px 0px rgb(255, 152, 0), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+  -moz-box-shadow: inset 0px 2px 3px 0px rgb(255, 152, 0), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+  -webkit-box-shadow: inset 0px 2px 3px 0px rgb(255, 152, 0), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+  background-color: #fff;
+}

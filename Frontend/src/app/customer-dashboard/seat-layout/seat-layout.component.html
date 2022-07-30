@@ -1,0 +1,48 @@
+
+<div class="body">
+    <div class="container">
+ 
+        <h1>{{movieDetails.title}}</h1>
+         <p>{{description.theatreName}} | {{description.showDate | date:"EEEE, MMMM d"}}, 
+            {{description.startTime | date:"hh:mm a"}} </p> 
+
+        <div class="w3ls-reg">
+        
+            <ul class="seat_w3ls">
+                <li class="smallBox greenBox">Selected/Booked Seat</li>
+
+                <li class="smallBox emptyBox">Empty Seat</li>
+            </ul>
+
+            <div class="seatStructure txt-center">
+                <table id="seatsBlock">
+                    <p id="notification"></p>
+                    <tr>
+                        <td></td>
+                        <td >1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                    </tr>
+                    <tr *ngFor="let row of rowNumber">
+                        <td>{{row.value}}</td>
+                        <td *ngFor="let column of columnNumber">
+                            <input type="checkbox" class="seats"  (click)="onSelected(row.value+column.value)">
+                        </td>
+                    </tr>
+
+                </table>
+                <button mat-flat-button color="primary" (click)="confirmAndPay()">Book Now</button>
+
+            </div>
+           
+        </div>
+      
+    </div>
+</div>
