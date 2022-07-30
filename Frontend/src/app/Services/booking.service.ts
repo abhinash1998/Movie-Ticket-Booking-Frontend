@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -15,5 +15,17 @@ export class BookingService {
   createBooking(booking: IBooking): Observable<IBooking> {
 
     return this.http.post<IBooking>(`${environment.baseUrl}/createBooking`, booking);
+  }
+
+  getBookingByUserId(userId: string): Observable<any> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("userId", userId);
+
+    return this.http.get(`${environment.baseUrl}/getBookingByUserId`,
+      { params: queryParams });
+  }
+
+  getBookings(): Observable<any> {
+    return this.http.get(`${environment.baseUrl}/getBookings`);
   }
 }

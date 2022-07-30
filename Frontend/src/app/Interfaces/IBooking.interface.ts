@@ -4,6 +4,7 @@ export interface IBooking
     numberOfSeats: Number,
     seats: String,
     amount: Number,
-    customerName: String,
-    theatreName: String
+    customerId: String,
+    theatreName: String,
+    movieName: String
 }
