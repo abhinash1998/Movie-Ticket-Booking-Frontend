@@ -18,16 +18,16 @@
 
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Theatre Capacity</mat-label>
-            <input type="number" matInput formControlName="theatreCapacity">
+            <input type="number" matInput formControlName="totalSeats">
             <mat-error>
                 Theatre Capacity is <strong>required</strong>
             </mat-error>
         </mat-form-field>
 
-        <button mat-flat-button color="primary">Save Movie</button>
+        <button mat-flat-button color="primary">Save Theatre</button>
     </form>
 </mat-dialog-content>
 
 <div mat-dialog-actions>
-    <button mat-flat-button color="warn" [mat-dialog-close]>Cancel</button>
+    <button mat-flat-button id="warn" color="warn" [mat-dialog-close]>Cancel</button>
 </div>

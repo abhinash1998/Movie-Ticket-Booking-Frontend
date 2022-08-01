@@ -12,9 +12,9 @@ import { MovieService } from 'src/app/Services/movie.service';
 export class CityComponent implements OnInit {
   showActionIsActive: boolean = true;
   cityForm: FormGroup;
-  moviesDisplay:any = [];
+  moviesDisplay: any = [];
 
-  constructor(private fb:FormBuilder, private movieContext:MovieService, private cityContext:CityService) { 
+  constructor(private fb: FormBuilder, private movieContext: MovieService, private cityContext: CityService) {
     this.cityForm = this.fb.group({
       cityName: ['', [Validators.required]],
       state: ['', [Validators.required]],
@@ -26,14 +26,14 @@ export class CityComponent implements OnInit {
     this.getMovies();
   }
 
-  getMovies(){
+  getMovies() {
     this.movieContext.getMovies().pipe(takeWhile(() => this.showActionIsActive)).subscribe(res => {
       this.moviesDisplay = res.result;
     })
-  
+
   }
 
-  addCity(){
+  addCity() {
     this.cityContext.addCity(this.cityForm.value)
       .pipe(takeWhile(() => this.showActionIsActive)).subscribe(() => {
         window.location.reload();
@@ -43,5 +43,5 @@ export class CityComponent implements OnInit {
   ngOnDestroy() {
     this.showActionIsActive = false
   }
- 
+
 }

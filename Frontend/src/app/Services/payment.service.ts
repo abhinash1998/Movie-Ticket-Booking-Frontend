@@ -11,8 +11,8 @@ export class PaymentService {
 
   constructor(private http:HttpClient) { }
 
-  makePayment(stripeToken: any): Observable<any>{
-    console.log(stripeToken)
-    return this.http.post<any>(`${environment.baseUrl}/createPayment`, {token: stripeToken});
+  makePayment(email:any, amount:any): Observable<any>{
+    const  paymentData = {email,amount} 
+    return this.http.post<any>(`${environment.baseUrl}/createPayment`, paymentData);
   }
 }

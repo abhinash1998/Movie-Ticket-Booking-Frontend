@@ -32,13 +32,14 @@ storedSeats:any=[];
 customerId:any;
   booking!: IBooking;
   ticketPrice:any;
-
+  userFullName:any;
   constructor(private showContext: ShowService, private theatreContext: TheatreService, 
     private movieContext:MovieService, private paymentContext: PaymentService,
     private bookingContext: BookingService, private router:Router) { }
 
   ngOnInit(): void {
     this.customerId = localStorage.getItem('customerId');
+    this.userFullName = localStorage.getItem('loggedUser');
     this.showContext.showSubject.subscribe(res => {
       this.description=res;
     })
@@ -96,7 +97,7 @@ customerId:any;
       this.paymentContext.makePayment(stripeToken.email,this.booking.amount).subscribe((data: any) => {
         if (data.status == true) {
           this.bookingContext.createBooking(this.booking).subscribe(res=>{
-            this.router.navigate(['/user/booking-history']);
+            this.router.navigate(['/user/show-ticket']);
           })
         }
         else {

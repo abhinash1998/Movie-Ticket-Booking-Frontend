@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   userFullName:any='';
   login:any='';
-
   constructor() { }
 
   ngOnInit(): void {
@@ -19,6 +18,7 @@ export class NavbarComponent implements OnInit {
   logOutAdmin(){
     localStorage.removeItem('loggedUser');
     localStorage.removeItem('isLogin');
+    localStorage.removeItem('customerId');
   }
 
 }

@@ -5,12 +5,13 @@
     <span class="fill-remaining-space"></span>
     <a mat-button *ngIf="!login" routerLink="/user/login">Login</a>
     <a mat-button *ngIf="!login" routerLink="/user/register">Register</a>
+    <a mat-button *ngIf="login" routerLink="/user/booking-history">My Bookings</a>
     <a mat-button *ngIf="login" (click)="logOutUser()" routerLink="/user/login">Logout</a>
-
-    <mat-select (selectionChange)="onChange()" [(ngModel)]="selectedCity">
-        <mat-option *ngFor="let city of cityDisplay" [value]="city.value">
-            {{city.option}}
-        </mat-option>
-    </mat-select>
-
+    <div class="option">
+        <mat-select (selectionChange)="onChange()" [(value)]="selectedCity" >
+            <mat-option *ngFor="let city of cityDisplay" [value]="city.value">
+                {{city.option}}
+            </mat-option>
+        </mat-select>
+    </div>
 </mat-toolbar>

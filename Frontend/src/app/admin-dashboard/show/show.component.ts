@@ -14,7 +14,7 @@ import { AddShowComponent } from './add-show/add-show.component';
 export class ShowComponent implements OnInit {
 
   showActionIsActive: boolean = true;
-  displayedColumns: string[] = ['showDate', 'startTime', 'endTime', 'title', 'theatreName'];
+  displayedColumns: string[] = ['showDate', 'startTime', 'endTime', 'title', 'theatreName','cityName'];
   showDisplay = new MatTableDataSource([]);
   length!: number;
   pageSize: number = 5;
@@ -32,6 +32,10 @@ export class ShowComponent implements OnInit {
       this.showDisplay.data = res.result;
       this.length = this.showDisplay.data.length;
     })
+  }
+
+  ngAfterViewInit() {
+    this.showDisplay.paginator = this.paginator;
   }
 
   openDialog() {

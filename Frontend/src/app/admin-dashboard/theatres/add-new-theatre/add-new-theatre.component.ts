@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { takeWhile } from 'rxjs';
 import { TheatreService } from 'src/app/Services/theatre.service';
 
+
 @Component({
   selector: 'app-add-new-theatre',
   templateUrl: './add-new-theatre.component.html',
@@ -17,7 +18,7 @@ export class AddNewTheatreComponent implements OnInit {
     this.theatreForm = this.fb.group({
       theatreName: ['', [Validators.required]],
       theatreLocation: ['', [Validators.required]],
-      theatreCapacity: ['', [Validators.required]]
+      totalSeats: ['', [Validators.required]]
     })
 
   }
@@ -26,8 +27,7 @@ export class AddNewTheatreComponent implements OnInit {
   }
 
   addNewTheatre() {
-    this.theatreContext.addNewTheatre(this.theatreForm.value.theatreName, this.theatreForm.value.theatreLocation,
-      this.theatreForm.value.theatreCapacity)
+    this.theatreContext.addNewTheatre(this.theatreForm.value)
       .pipe(takeWhile(() => this.theatreActionIsActive)).subscribe(() => {
         window.location.reload();
       })

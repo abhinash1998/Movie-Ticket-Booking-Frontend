@@ -67,3 +67,16 @@ ul.seat_w3ls {
   -webkit-box-shadow: inset 0px 2px 3px 0px rgb(255, 152, 0), 0px 1px 0px 0px rgba(255, 255, 255, .8);
   background-color: #fff;
 }
+
+h1{
+  color: aliceblue;
+}
+
+p{
+  color: aliceblue;
+}
+
+.mat-flat-button{
+  margin-left: 16%;
+  margin-top: 2%;
+}

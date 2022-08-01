@@ -10,11 +10,16 @@
   h3{
     text-align: center;
   }
-  
+
   .card-wrapper {
     justify-content: left;
     display: grid;
     gap: 32px;
     grid-template-columns: repeat(4, calc((100% - 96px) / 4));
+    background-color: black;
   }
 
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }

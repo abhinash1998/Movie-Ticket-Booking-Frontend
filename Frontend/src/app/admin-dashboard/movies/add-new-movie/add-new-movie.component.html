@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="add-movie">
 
   <h4>Add New Movie</h4>
@@ -6,7 +7,7 @@
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Movie Name</mat-label>
-      <input type="text" matInput formControlName="movieName">
+      <input type="text" matInput formControlName="title">
       <mat-error>Movie Name is <strong>required</strong></mat-error>
     </mat-form-field>
 
@@ -72,7 +73,7 @@
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Duration</mat-label>
-      <input type="number" matInput formControlName="duration">
+      <input type="number" matInput formControlName="durationInMins">
       <mat-error>
         Movie Duration is <strong>required</strong>
       </mat-error>

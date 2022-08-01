@@ -1,33 +1,32 @@
 <app-customer-navbar></app-customer-navbar>
 
-    <iframe width="560" height="315" 
-    [src]="movieDetails.trailerLink" 
-    frameborder="0"
-     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+<div class="movie-details">
+<iframe width="560" height="315" [src]="movieDetails.trailerLink" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen></iframe>
 
-    <mat-card class="example-card"> 
-        <mat-card-content>
-            <h4>{{movieDetails.title}}</h4>
-            <p>Cast: {{movieDetails.cast}}</p>
-            <p>Director: {{movieDetails.director}}</p>
-            <p>Format: {{movieDetails.format}}</p>
-            <p>Language: {{movieDetails.language}}</p>
-            <p>Release Date: {{movieDetails.releaseDate | date: 'longDate'}}</p>
-            <p>Duration: {{convertMinuteToHour(movieDetails.durationInMins)}}</p>
-            <p>Genre: {{movieDetails.genre}}</p>
-            <p>Release Date: {{movieDetails.releaseDate | date: 'longDate'}}</p>
-        </mat-card-content>
-
-        <mat-card-footer>
-            <button mat-flat-button color="primary"  
-            [routerLink]="['/user/cinema-hall',movieDetails._id,'city',cityName]">Book Tickets</button>
-        </mat-card-footer>
-      </mat-card>
-
-    <h4>About the movie</h4>  
-    <mat-card class="movie-card"> 
-        <mat-card-content>
-    <p>{{movieDetails.description}}</p>
+<mat-card class="example-card">
+    <mat-card-content>
+        <h4>{{movieDetails.title}}</h4>
+        <b>Cast: </b><span>{{movieDetails.cast}}</span><br /><br />
+        <b>Director: </b><span>{{movieDetails.director}}</span><br /><br />
+        <b>Format: </b><span>{{movieDetails.format}}</span><br /><br />
+        <b>Language: </b><span>{{movieDetails.language}}</span><br /><br />
+        <b>Release Date: </b><span>{{movieDetails.releaseDate | date: 'longDate'}}</span><br /><br />
+        <b>Duration: </b><span>{{convertMinuteToHour(movieDetails.durationInMins)}}</span><br /><br />
+        <b>Genre: </b><span>{{movieDetails.genre}}</span><br /><br />
     </mat-card-content>
-    </mat-card>
+
+    <mat-card-footer>
+        <button mat-flat-button color="primary"
+            [routerLink]="['/user/cinema-hall',movieDetails._id,'city',cityName]">Book Tickets</button>
+    </mat-card-footer>
+</mat-card>
+
+<h4>About the movie</h4>
+<mat-card class="movie-card">
+    <mat-card-content>
+        <p>{{movieDetails.description}}</p>
+    </mat-card-content>
+</mat-card>
+</div>

@@ -1,33 +1,32 @@
 <app-navbar></app-navbar>
 <div class="add-city">
 
-    <h4>Add New City</h4>
-    <form class="example-form" (ngSubmit)='addCity()' [formGroup]='cityForm'>
+  <h4>Add New City</h4>
+  <form class="example-form" (ngSubmit)='addCity()' [formGroup]='cityForm'>
 
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>City Name</mat-label>
-            <input type="text" matInput formControlName="cityName">
-            <mat-error>City Name is <strong>required</strong></mat-error>
-        </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>City Name</mat-label>
+      <input type="text" matInput formControlName="cityName">
+      <mat-error>City Name is <strong>required</strong></mat-error>
+    </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>State</mat-label>
-            <input type="text" matInput formControlName="state">
-            <mat-error>State is <strong>required</strong>
-            </mat-error>
-        </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>State</mat-label>
+      <input type="text" matInput formControlName="state">
+      <mat-error>State is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Select Movie</mat-label>
-            <mat-select formControlName="movieName" required>
-              <mat-option *ngFor="let movie of moviesDisplay" [value]="movie.title">
-                {{movie.title}}
-              </mat-option>
-            </mat-select>
-            <mat-error>Please choose an Movie</mat-error>
-          </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Select Movie</mat-label>
+      <mat-select formControlName="movieName" required>
+        <mat-option *ngFor="let movie of moviesDisplay" [value]="movie.title">
+          {{movie.title}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Please choose an Movie</mat-error>
+    </mat-form-field>
 
-        <button mat-flat-button color="primary">Save City</button>
-    </form>
- </div>   
-
+    <button mat-flat-button color="primary">Save City</button>
+  </form>
+</div>

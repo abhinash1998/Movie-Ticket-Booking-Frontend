@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IBooking } from '../Interfaces/IBooking.interface';
 
@@ -10,7 +10,6 @@ import { IBooking } from '../Interfaces/IBooking.interface';
 export class BookingService {
 
   constructor(private http: HttpClient) { }
-
 
   createBooking(booking: IBooking): Observable<IBooking> {
 
@@ -25,6 +24,15 @@ export class BookingService {
       { params: queryParams });
   }
 
+  getLatestBookingByUserId(userId: string): Observable<any> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("userId", userId);
+
+    return this.http.get(`${environment.baseUrl}/getLatestBookingByUserId`,
+      { params: queryParams });
+  }
+
+  
   getBookings(): Observable<any> {
     return this.http.get(`${environment.baseUrl}/getBookings`);
   }

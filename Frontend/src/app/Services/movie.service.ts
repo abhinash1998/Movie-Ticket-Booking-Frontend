@@ -11,7 +11,7 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
-  addMovie(movie:IMovie): Observable<IMovie> {
+  addMovie(movie: IMovie): Observable<IMovie> {
 
     const movieData: any = new FormData();
 

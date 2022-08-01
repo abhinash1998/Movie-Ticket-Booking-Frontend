@@ -10,13 +10,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-new-movie.component.css']
 })
 export class AddNewMovieComponent implements OnInit {
-
+  safeUrl: any;
   movieForm: FormGroup;
   movieActionIsActive: boolean = true;
-
-  constructor(private fb: FormBuilder, private movieContext: MovieService, private router: Router) {
+  moviesDisplay: any = []
+  constructor(private fb: FormBuilder, private movieContext: MovieService,
+    private router: Router) {
     this.movieForm = this.fb.group({
-      movieName: ['', [Validators.required]],
+      title: ['', [Validators.required]],
       releaseDate: ['', [Validators.required]],
       cast: ['', [Validators.required]],
       director: ['', [Validators.required]],
@@ -24,26 +25,25 @@ export class AddNewMovieComponent implements OnInit {
       genre: ['', [Validators.required]],
       language: ['', [Validators.required]],
       trailerLink: ['', [Validators.required]],
-      duration: ['', [Validators.required]],
+      durationInMins: ['', [Validators.required]],
       format: [''],
       imagePath: ['', [Validators.required]]
     })
-
   }
 
   ngOnInit(): void {
-
+    this.movieContext.getMovies().pipe(takeWhile(() => this.movieActionIsActive)).subscribe(res => {
+      this.moviesDisplay = res.result;
+    })
   }
+
   uploadBanner($event: any) {
     const file: File = $event.target.files[0]
     this.movieForm.patchValue({ imagePath: file });
   }
 
   addNewMovie() {
-    this.movieContext.addMovie(this.movieForm.value.movieName, this.movieForm.value.releaseDate,
-      this.movieForm.value.cast, this.movieForm.value.director, this.movieForm.value.description,
-      this.movieForm.value.genre, this.movieForm.value.language, this.movieForm.value.trailerLink,
-      this.movieForm.value.duration, this.movieForm.value.format, this.movieForm.value.imagePath)
+    this.movieContext.addMovie(this.movieForm.value)
       .pipe(takeWhile(() => this.movieActionIsActive)).subscribe(() => {
         this.router.navigate(['/TicketBooking/movies']);
       })

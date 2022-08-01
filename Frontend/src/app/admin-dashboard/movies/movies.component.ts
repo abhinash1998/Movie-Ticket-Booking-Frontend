@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import {  MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { takeWhile } from 'rxjs';
 import { MovieService } from 'src/app/Services/movie.service';
 import { MatDialog } from '@angular/material/dialog';

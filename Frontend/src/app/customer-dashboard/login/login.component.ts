@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, of, takeWhile } from 'rxjs';
+import { catchError, of } from 'rxjs';
 import { UserService } from 'src/app/Services/user.service';
 
 @Component({
@@ -36,11 +36,13 @@ export class LoginComponent implements OnInit {
         }
         else if (res.result.role == 'admin') {
           localStorage.setItem('loggedUser', res.result.fullName);
+          localStorage.setItem('customerId', res.result._id);
           localStorage.setItem('isLogin', 'true');
           this.router.navigate(['/TicketBooking/dashboard']);
         }
         else {
           localStorage.setItem('loggedUser', res.result.fullName);
+          localStorage.setItem('customerId', res.result._id);
           localStorage.setItem('isLogin', 'true');
           this.router.navigate(['/user/movie-list']);
         }

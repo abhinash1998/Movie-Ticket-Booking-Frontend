@@ -11,15 +11,13 @@ import { UserService } from 'src/app/Services/user.service';
 export class MovieListByCityNameComponent implements OnInit {
   moviesDisplay: any = [];
   movieActionIsActive: boolean = true;
-  onSelectCity: boolean = false;
-  selectedCity: string = "";
-
-  constructor(private userContext: UserService, private cityContext: CityService) { }
+  selectedCity: any;
+ 
+  constructor(private cityContext: CityService) { }
 
   ngOnInit(): void {
-    this.userContext.userSubject.subscribe(res => {
-      this.onSelectCity = res.onChange;
-      this.selectedCity = res.selectedCity;
+    this.cityContext.citySelection.subscribe(() => {
+      this.selectedCity =  localStorage.getItem('selectedCity');
       this.getMoviesByCityName(this.selectedCity)
     })
   }

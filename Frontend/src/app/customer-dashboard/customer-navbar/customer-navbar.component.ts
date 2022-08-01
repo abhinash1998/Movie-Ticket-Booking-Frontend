@@ -10,15 +10,19 @@ import { UserService } from 'src/app/Services/user.service';
   styleUrls: ['./customer-navbar.component.css']
 })
 export class CustomerNavbarComponent implements OnInit {
+
   cityDisplay: any = []
-  showActionIsActive: boolean = true
-  constructor(private cityContext: CityService, private router: Router, private userContext: UserService) { }
-  userFullName: any = '';
-  login: any = ''
+  showActionIsActive: boolean = true;
+  userFullName: any;
+  login: any;
   selectedCity!: any;
+
+  constructor(private cityContext: CityService) { }
+ 
   ngOnInit(): void {
     this.userFullName = localStorage.getItem('loggedUser');
     this.login = localStorage.getItem('isLogin');
+    this.selectedCity = localStorage.getItem('selectedCity');
     this.getAllCities();
   }
 
@@ -29,12 +33,15 @@ export class CustomerNavbarComponent implements OnInit {
   }
 
   onChange() {
-    this.userContext.userSubject.next({ onChange: true, selectedCity: this.selectedCity })
+    localStorage.setItem('selectedCity',this.selectedCity);
+    this.cityContext.citySelection.next({ 
+    selectedCity: this.selectedCity  })
   }
-  
+
   logOutUser() {
     localStorage.removeItem('loggedUser');
     localStorage.removeItem('isLogin');
+    localStorage.removeItem('customerId');
   }
 
 }

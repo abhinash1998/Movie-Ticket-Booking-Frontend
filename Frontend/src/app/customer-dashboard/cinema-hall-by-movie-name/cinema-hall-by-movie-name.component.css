@@ -3,3 +3,22 @@
     margin-bottom: 2%;
     margin-top: 2%;
   }
+
+  .startTime{
+        list-style-type:none;
+        display: inline-block;
+  }
+
+  .showDate{
+    list-style-type:none;
+    display: inline-block;
+}
+
+.show-card{
+    width: 92%;
+    margin-left: 2%;
+    margin-bottom: 3%;
+    margin-top: 2%;
+}
+
+

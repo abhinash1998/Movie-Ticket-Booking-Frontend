@@ -11,19 +11,10 @@ import { IUser } from '../Interfaces/IUser.interface';
 export class UserService {
 
 
-  public userSubject = new BehaviorSubject<any>({onChange:false,selectedCity:""}); 
   public user!: Observable<IUser>;
 
-  constructor(private http:HttpClient) { 
-   
-      // this.user = this.userSubject.asObservable();
-  }
+  constructor(private http: HttpClient) { }
 
-//  public  get  userValue(){
-//      return  this.userSubject.value;
-//   }
-
-  
   register(user: IUser): Observable<IUser> {
 
     return this.http.post<IUser>(`${environment.baseUrl}/user/register`, user);
@@ -33,6 +24,4 @@ export class UserService {
 
     return this.http.post<IAuthenticationUser>(`${environment.baseUrl}/user/login`, login);
   }
-
-
 }
