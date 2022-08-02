@@ -17,6 +17,16 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Select City</mat-label>
+            <mat-select formControlName="cityName" required> 
+              <mat-option *ngFor="let city of cityDisplay" [value]="city.value">
+                {{city.option}}
+              </mat-option>
+            </mat-select>
+            <mat-error>Please choose a City</mat-error>
+          </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Theatre Capacity</mat-label>
             <input type="number" matInput formControlName="totalSeats">
             <mat-error>

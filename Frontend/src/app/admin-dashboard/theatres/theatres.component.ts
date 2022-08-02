@@ -32,11 +32,16 @@ export class TheatresComponent implements OnInit {
   }
 
   getTheatres() {
-    this.theatreContext.getTheatres().pipe(takeWhile(() => this.theatreActionIsActive)).subscribe(res => {
-      this.theatresDisplay.data = res.result;
-      this.length = this.theatresDisplay.data.length;
-    })
+    this.theatreContext.getTheatres().pipe(takeWhile(() => this.theatreActionIsActive)).subscribe(
+      {
+        next: (res) =>{  
+          this.theatresDisplay.data = res.result;
+          this.length = this.theatresDisplay.data.length;
+        },
+        error: (error) => console.log(error)
+      })
   }
+  
   openDialog() {
     this.dialog
       .open(AddNewTheatreComponent)

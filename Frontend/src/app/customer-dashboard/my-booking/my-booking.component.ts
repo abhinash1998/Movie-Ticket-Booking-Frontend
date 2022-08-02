@@ -29,10 +29,14 @@ export class MyBookingComponent implements OnInit {
   }
 
   getBookingsByUserId(customerId:string) {
-    this.bookingContext.getBookingByUserId(customerId).pipe(takeWhile(() => this.bookingActionIsActive)).subscribe(res => {
-      this.bookingDisplay.data = res.result;
-      this.length = this.bookingDisplay.data.length;
-    })
+    this.bookingContext.getBookingByUserId(customerId).pipe(takeWhile(() => this.bookingActionIsActive)).subscribe(
+      {
+        next: (res) =>{  
+          this.bookingDisplay.data = res.result;
+          this.length = this.bookingDisplay.data.length;
+        },
+        error: (error) => console.log(error)
+      })
   }
 
   ngAfterViewInit() {

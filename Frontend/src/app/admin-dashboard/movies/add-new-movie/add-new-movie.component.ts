@@ -32,9 +32,12 @@ export class AddNewMovieComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.movieContext.getMovies().pipe(takeWhile(() => this.movieActionIsActive)).subscribe(res => {
-      this.moviesDisplay = res.result;
-    })
+    this.movieContext.getMovies().pipe(takeWhile(() => this.movieActionIsActive)).subscribe(
+      {
+        next: (res) =>{  this.moviesDisplay = res.result;
+        },
+        error: (error) => console.log(error)
+      })
   }
 
   uploadBanner($event: any) {
@@ -44,9 +47,13 @@ export class AddNewMovieComponent implements OnInit {
 
   addNewMovie() {
     this.movieContext.addMovie(this.movieForm.value)
-      .pipe(takeWhile(() => this.movieActionIsActive)).subscribe(() => {
-        this.router.navigate(['/TicketBooking/movies']);
-      })
+      .pipe(takeWhile(() => this.movieActionIsActive)).subscribe(
+        {
+          next: () =>{
+            this.router.navigate(['/TicketBooking/movies']);
+          },
+          error: (error) => console.log(error)
+        })
   }
 
   ngOnDestroy() {

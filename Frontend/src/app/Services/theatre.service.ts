@@ -20,11 +20,17 @@ export class TheatreService {
     return this.http.get(`${environment.baseUrl}/showTheatres`);
   }
 
-
   getTheatreDetailsByTheatreName(theatreName: string): Observable<any> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("theatreName", theatreName);
     return this.http.get(`${environment.baseUrl}/getTheatreDetailsByTheatreName`, { params: queryParams });
   }
 
+  
+  getTheatreNameByCity(cityName: string): Observable<any> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("cityName", cityName);
+    return this.http.get(`${environment.baseUrl}/getTheatreNameByCity`, { params: queryParams });
+  }
+  
 }

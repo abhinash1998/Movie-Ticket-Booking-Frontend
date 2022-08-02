@@ -18,6 +18,7 @@ export class AddShowComponent implements OnInit {
   cityDisplay:any = [];
   showActionIsActive: boolean = true;
   showForm: FormGroup;
+  selectedCity:any;
 
   constructor(private fb:FormBuilder, private movieContext:MovieService,
      private theatreContext:TheatreService, private showContext:ShowService, private cityContext:CityService) {
@@ -33,34 +34,58 @@ export class AddShowComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getMovies();
-    this.getTheatres();
+    // this.getTheatres();
     this.getAllCities();
   }
 
-  getMovies() {
-    this.movieContext.getMovies().pipe(takeWhile(() => this.showActionIsActive)).subscribe(res => {
-      this.moviesDisplay = res.result;
-    })
-  }
-
-  getTheatres() {
-    this.theatreContext.getTheatres().pipe(takeWhile(() => this.showActionIsActive)).subscribe(res => {
-      this.theatresDisplay = res.result;
-    })
-  }
+  // getTheatres() {
+  //   this.theatreContext.getTheatres().pipe(takeWhile(() => this.showActionIsActive)).subscribe(
+  //     {
+  //       next: (res) =>{  
+  //         this.theatresDisplay = res.result;
+  //       },
+  //       error: (error) => console.log(error)
+  //     })
+  // }
+  
   getAllCities() {
-    this.cityContext.getAllCities().pipe(takeWhile(() => this.showActionIsActive)).subscribe(res => {
-      this.cityDisplay = res.result;
-
-    })
+    this.cityContext.getAllCities().pipe(takeWhile(() => this.showActionIsActive)).subscribe(
+      {
+        next: (res) =>{  
+          this.cityDisplay = res.result;
+        },
+        error: (error) => console.log(error)
+      })
   }
+
+  onChange() {
+    this.cityContext.getMoviesByCityName(this.selectedCity).pipe(takeWhile(() => this.showActionIsActive)).subscribe(
+      {
+        next: (res) =>{  
+          this.moviesDisplay = res.result;
+        },
+        error: (error) => console.log(error)
+      })
+
+      this.theatreContext.getTheatreNameByCity(this.selectedCity).pipe(takeWhile(() => this.showActionIsActive)).subscribe(
+        {
+          next: (res) =>{  
+            this.theatresDisplay = res.result;
+          },
+          error: (error) => console.log(error)
+        })   
+  }
+
 
   addShow(){
     this.showContext.addShow(this.showForm.value)
-      .pipe(takeWhile(() => this.showActionIsActive)).subscribe(() => {
-        window.location.reload();
-      })
+      .pipe(takeWhile(() => this.showActionIsActive)).subscribe(
+        {
+          next: () =>{
+            window.location.reload();
+          },
+          error: (error) => console.log(error)
+        })
   }
 
   ngOnDestroy() {

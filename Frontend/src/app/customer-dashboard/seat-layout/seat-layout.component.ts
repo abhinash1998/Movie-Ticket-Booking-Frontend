@@ -40,36 +40,47 @@ customerId:any;
   ngOnInit(): void {
     this.customerId = localStorage.getItem('customerId');
     this.userFullName = localStorage.getItem('loggedUser');
-    this.showContext.showSubject.subscribe(res => {
-      this.description=res;
-    })
+    this.showContext.showSubject.subscribe(
+      {
+        next: (res) =>{  
+          this.description=res;
+        },
+        error: (error) => console.log(error)
+      })
    this.getTheatreDetailsByTheatreName(this.description.theatreName);
    this.getMovieDetails(this.description.movieId);
    this.invokeStripe();
   }
 
   getMovieDetails(movieId: string){
-    this.movieContext.getMovieById(movieId).pipe(takeWhile(() => this.seatLayoutActionIsActive)).subscribe(res => {
-      this.movieDetails = res.result;     
-    })
+    this.movieContext.getMovieById(movieId).pipe(takeWhile(() => this.seatLayoutActionIsActive)).subscribe(
+      {
+        next: (res) =>{
+          this.movieDetails = res.result;     
+        },
+        error: (error) => console.log(error)
+      })
   }
 
   getTheatreDetailsByTheatreName(theatreName:string){
     this.theatreContext.getTheatreDetailsByTheatreName(theatreName).
-    pipe(takeWhile(() => this.seatLayoutActionIsActive)).subscribe(res => {
-      this.theatreDetails = res.result;
-
-      this.rows = this.theatreDetails.totalSeats/10;
-     
-      for(let i=0;i<this.rows;i++){
-       this.convertNumberToAlphabet=i+65;
-       this.rowNumber.push({ value: String.fromCharCode(this.convertNumberToAlphabet) })
-      }
-   
-      for(let j=0;j<this.columns;j++){
-       this.columnNumber.push({ value: j+1 })
-      }
-      
+    pipe(takeWhile(() => this.seatLayoutActionIsActive)).subscribe({
+      next: (res) =>{
+          this.theatreDetails = res.result;
+    
+          this.rows = this.theatreDetails.totalSeats/10;
+         
+          for(let i=0;i<this.rows;i++){
+           this.convertNumberToAlphabet=i+65;
+           this.rowNumber.push({ value: String.fromCharCode(this.convertNumberToAlphabet) })
+          }
+       
+          for(let j=0;j<this.columns;j++){
+           this.columnNumber.push({ value: j+1 })
+          }
+          
+      },
+      error: (error) => console.log(error)
     })
   }
 

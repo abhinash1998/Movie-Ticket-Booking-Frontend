@@ -27,9 +27,13 @@ export class CustomerNavbarComponent implements OnInit {
   }
 
   getAllCities() {
-    this.cityContext.getAllCities().pipe(takeWhile(() => this.showActionIsActive)).subscribe(res => {
-      this.cityDisplay = res.result;
-    })
+    this.cityContext.getAllCities().pipe(takeWhile(() => this.showActionIsActive)).subscribe(
+      {
+        next: (res) =>{  
+          this.cityDisplay = res.result;
+        },
+        error: (error) => console.log(error)
+      })
   }
 
   onChange() {

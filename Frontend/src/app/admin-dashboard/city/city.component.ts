@@ -27,17 +27,24 @@ export class CityComponent implements OnInit {
   }
 
   getMovies() {
-    this.movieContext.getMovies().pipe(takeWhile(() => this.showActionIsActive)).subscribe(res => {
-      this.moviesDisplay = res.result;
-    })
-
+    this.movieContext.getMovies().pipe(takeWhile(() => this.showActionIsActive)).subscribe(
+      {
+        next: (res) =>{
+          this.moviesDisplay = res.result;
+        },
+        error: (error) => console.log(error)
+      })
   }
 
   addCity() {
     this.cityContext.addCity(this.cityForm.value)
-      .pipe(takeWhile(() => this.showActionIsActive)).subscribe(() => {
-        window.location.reload();
-      })
+      .pipe(takeWhile(() => this.showActionIsActive)).subscribe(
+        {
+          next: () =>{
+            window.location.reload();
+          },
+          error: (error) => console.log(error)
+        })
   }
 
   ngOnDestroy() {

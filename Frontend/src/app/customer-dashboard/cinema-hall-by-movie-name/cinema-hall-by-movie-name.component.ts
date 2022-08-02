@@ -35,10 +35,14 @@ export class CinemaHallByMovieNameComponent implements OnInit {
   }
 
   getShowDatesByMovieIdAndCityName(movieId: string, cityName: string) {
-    this.showContext.getShowDatesByMovieIdAndCityName(movieId, cityName).pipe(takeWhile(() => this.theatreActionIsActive)).subscribe(res => {
-      this.showDates = res.result;
-
-    })
+    this.showContext.getShowDatesByMovieIdAndCityName(movieId, cityName).pipe(takeWhile(() => this.theatreActionIsActive))
+    .subscribe(
+      {
+        next: (res) =>{  
+          this.showDates = res.result;
+        },
+        error: (error) => console.log(error)
+      })
   }
 
   clickCard(value: any) {
@@ -51,23 +55,27 @@ export class CinemaHallByMovieNameComponent implements OnInit {
     this.showDateTime = value
     this.showContext.showCinemaHallsByMovieIdAndShowDate(this.movieId, this.cityName, value)
       .pipe(takeWhile(() => this.theatreActionIsActive))
-      .subscribe(res => {
-        this.showDisplay = res.result;
-         this.distinctTheatreName = [...new Set(this.showDisplay.map((res: any) => res.theatres.theatreName))];
-        this.cinemaHallByShowDate = [];
+      .subscribe(
+        {
+          next: (res) =>{  
+            this.showDisplay = res.result;
+            this.distinctTheatreName = [...new Set(this.showDisplay.map((res: any) => res.theatres.theatreName))];
+           this.cinemaHallByShowDate = [];
+   
+           this.distinctTheatreName.forEach((theatre:any) => {
+            this.filterCinemaHallByStartTime= this.showDisplay.filter((res: any) => res.theatres.theatreName === theatre)
+               .map((item: any) => ({ option: item.startTime, value: item.startTime }));
 
-        this.distinctTheatreName.forEach((theatre:any) => {
-           this.filterCinemaHallByStartTime= this.showDisplay.filter((res: any) => res.theatres.theatreName === theatre)
-            .map((item: any) => ({ option: item.startTime, value: item.startTime }));
-          this.cinemaHallByShowDate.push(
-            {
-              cinemaHall: theatre,
-              startDate: this.filterCinemaHallByStartTime
-            }
-          )
-        });
-
-      })
+             this.cinemaHallByShowDate.push(
+               {
+                 cinemaHall: theatre,
+                 startDate: this.filterCinemaHallByStartTime
+               }
+             )
+           });
+          },
+          error: (error) => console.log(error)
+        })
   }
 
   navigateToSeatLayoutPage(theatreName:string, startTime:Date){

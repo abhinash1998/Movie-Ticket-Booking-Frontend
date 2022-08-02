@@ -2,5 +2,6 @@ export interface ITheatre
 {
     theatreName: string,
     theatreLocation: string,
-    totalSeats: Number
+    totalSeats: Number,
+    cityName: string
 }

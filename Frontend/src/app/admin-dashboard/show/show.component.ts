@@ -28,10 +28,14 @@ export class ShowComponent implements OnInit {
   }
 
   getAllShows() {
-    this.showContext.getAllShows().pipe(takeWhile(() => this.showActionIsActive)).subscribe(res => {
-      this.showDisplay.data = res.result;
-      this.length = this.showDisplay.data.length;
-    })
+    this.showContext.getAllShows().pipe(takeWhile(() => this.showActionIsActive)).subscribe(
+      {
+        next: (res) =>{  
+          this.showDisplay.data = res.result;
+          this.length = this.showDisplay.data.length;
+        },
+        error: (error) => console.log(error)
+      })
   }
 
   ngAfterViewInit() {

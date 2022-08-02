@@ -24,10 +24,20 @@
           </mat-form-field>
 
           <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Select City</mat-label>
+            <mat-select formControlName="cityName" (selectionChange)="onChange()" [(value)]="selectedCity" required> 
+              <mat-option *ngFor="let city of cityDisplay" [value]="city.value">
+                {{city.option}}
+              </mat-option>
+            </mat-select>
+            <mat-error>Please choose a City</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Select Movie</mat-label>
             <mat-select formControlName="movieName" required>
-              <mat-option *ngFor="let movie of moviesDisplay" [value]="movie.title">
-                {{movie.title}}
+              <mat-option *ngFor="let movie of moviesDisplay" [value]="movie.movieId.title">
+                {{movie.movieId.title}}
               </mat-option>
             </mat-select>
             <mat-error>Please choose an Movie</mat-error>
@@ -36,22 +46,14 @@
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Select Theatre</mat-label>
             <mat-select formControlName="theatreName" required>
-              <mat-option *ngFor="let theatre of theatresDisplay" [value]="theatre.theatreName">
-                {{theatre.theatreName}}
+              <mat-option *ngFor="let theatre of theatresDisplay" [value]="theatre.value">
+                {{theatre.option}}
               </mat-option>
             </mat-select>
             <mat-error>Please choose an Theatre</mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Select City</mat-label>
-            <mat-select formControlName="cityName" required>
-              <mat-option *ngFor="let city of cityDisplay" [value]="city.value">
-                {{city.option}}
-              </mat-option>
-            </mat-select>
-            <mat-error>Please choose a City</mat-error>
-          </mat-form-field>
+         
           
         <button mat-flat-button color="primary">Register Show</button>
     </form>
