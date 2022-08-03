@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { takeWhile } from 'rxjs';
+import { CinemaHallService } from 'src/app/Services/cinema-hall.service';
+import { CinemaService } from 'src/app/Services/cinema.service';
 import { CityService } from 'src/app/Services/city.service';
 import { MovieService } from 'src/app/Services/movie.service';
 import { ShowService } from 'src/app/Services/show.service';
-import { TheatreService } from 'src/app/Services/theatre.service';
 
 @Component({
   selector: 'app-add-show',
@@ -19,35 +20,31 @@ export class AddShowComponent implements OnInit {
   showActionIsActive: boolean = true;
   showForm: FormGroup;
   selectedCity:any;
+  selectedCinema:any;
+  cinemaDisplay:any;
+  cinemaHallDisplay:any;
 
-  constructor(private fb:FormBuilder, private movieContext:MovieService,
-     private theatreContext:TheatreService, private showContext:ShowService, private cityContext:CityService) {
+  constructor(private fb:FormBuilder, private showContext:ShowService, 
+     private cityContext:CityService, private cinemaContext:CinemaService,
+     private cinemaHallContext:CinemaHallService) {
+
 
     this.showForm = this.fb.group({
       showDate: ['', [Validators.required]],
       startTime: ['', [Validators.required]],
       endTime: ['', [Validators.required]],
       movieName: ['', [Validators.required]],
-      theatreName: ['', [Validators.required]],
+      cinemaName: ['', [Validators.required]],
+      cinemaHallName: ['', [Validators.required]],
       cityName: ['', [Validators.required]]
     })
+
    }
 
   ngOnInit(): void {
-    // this.getTheatres();
     this.getAllCities();
   }
 
-  // getTheatres() {
-  //   this.theatreContext.getTheatres().pipe(takeWhile(() => this.showActionIsActive)).subscribe(
-  //     {
-  //       next: (res) =>{  
-  //         this.theatresDisplay = res.result;
-  //       },
-  //       error: (error) => console.log(error)
-  //     })
-  // }
-  
   getAllCities() {
     this.cityContext.getAllCities().pipe(takeWhile(() => this.showActionIsActive)).subscribe(
       {
@@ -67,18 +64,30 @@ export class AddShowComponent implements OnInit {
         error: (error) => console.log(error)
       })
 
-      this.theatreContext.getTheatreNameByCity(this.selectedCity).pipe(takeWhile(() => this.showActionIsActive)).subscribe(
-        {
-          next: (res) =>{  
-            this.theatresDisplay = res.result;
-          },
-          error: (error) => console.log(error)
-        })   
+          this.cinemaContext.getCinemaNameByCity(this.selectedCity).pipe(takeWhile(() => this.showActionIsActive)).subscribe(
+            {
+              next: (res) =>{  
+                this.cinemaDisplay = res.result;
+              },
+              error: (error) => console.log(error)
+            })
+        
   }
 
 
+  
+  selectCinema() {
+    this.cinemaHallContext.getCinemaHallByCinemaName(this.selectedCinema).pipe(takeWhile(() => this.showActionIsActive)).subscribe(
+      {
+        next: (res) =>{  
+          this.cinemaHallDisplay = res.result;
+        },
+        error: (error) => console.log(error)
+      })
+    }
+
   addShow(){
-    this.showContext.addShow(this.showForm.value)
+    this.showContext.createShow(this.showForm.value)
       .pipe(takeWhile(() => this.showActionIsActive)).subscribe(
         {
           next: () =>{

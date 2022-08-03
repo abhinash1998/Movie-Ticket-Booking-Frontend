@@ -9,24 +9,26 @@ import { IShow } from '../Interfaces/IShow.interface';
 })
 export class ShowService {
 
-  public showSubject = new BehaviorSubject<any>({ movieId: "", cityName: "", showDate: "", startTime: "", theatreName: "" });
+  public showSubject = new BehaviorSubject<any>({ movieId: "", cityName: "", 
+  showDate: "", startTime: "", theatreName: "" });
+  
   constructor(private http: HttpClient) { }
 
-  addShow(show: IShow): Observable<IShow> {
+  createShow(show: IShow): Observable<IShow> {
 
-    return this.http.post<IShow>(`${environment.baseUrl}/createNewShow`, show);
+    return this.http.post<IShow>(`${environment.baseUrl}/addNewShow`, show);
   }
 
-  getAllShows(): Observable<any> {
+  getShow(): Observable<any> {
     return this.http.get(`${environment.baseUrl}/getAllShows`);
   }
 
-  showCinemaHallsByMovieIdAndShowDate(movieId: string, cityName: string, showDate: any): Observable<any> {
+  showCinemaHallsAndStartTimeByMovieIdAndShowDate(movieId: string, cityName: string, showDate: any): Observable<any> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("movieId", movieId);
     queryParams = queryParams.append("cityName", cityName);
     queryParams = queryParams.append("showDate", showDate);
-    return this.http.get(`${environment.baseUrl}/showCinemaHallsByMovieIdAndShowDate`,
+    return this.http.get(`${environment.baseUrl}/showCinemaHallsAndStartTimeByMovieIdAndShowDate`,
       { params: queryParams });
   }
 
@@ -34,8 +36,10 @@ export class ShowService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("movieId", movieId);
     queryParams = queryParams.append("cityName", cityName);
-    return this.http.get(`${environment.baseUrl}/getShowDatesByMovieId`,
+    return this.http.get(`${environment.baseUrl}/getShowDatesByMovieIdAndCityName`,
       { params: queryParams });
   }
+
+  
 
 }

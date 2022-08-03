@@ -3,7 +3,8 @@ export interface IShow
     showDate: Date,
     startTime: Date,
     endTime: Date,
-    theatreName: string,
+    cinemaName: string,
+    cinemaHallName: string,
     cityName: string,
     movieName: string
 }

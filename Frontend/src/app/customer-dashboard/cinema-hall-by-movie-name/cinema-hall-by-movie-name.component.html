@@ -1,9 +1,13 @@
 
 <app-customer-navbar></app-customer-navbar>
 
+<div class="movie-details">
+    <h3>{{movieDetails.title}}</h3>
+    <p>{{movieDetails.releaseDate | date: 'longDate' }}</p>
+</div>
 
 <ul *ngFor="let showDate of showDates" class="showDate">
-   <li> <button (click)="clickCard(showDate.value)" id="primary" mat-flat-button color="primary">{{showDate.value | date:"EEEE, MMMM d"}}
+   <li> <button  (click)="clickCard(showDate.value)" id="primary" mat-flat-button color="primary">{{showDate.value | date:"EEEE, MMMM d"}}
         </button>
         </li>
         </ul>
@@ -11,11 +15,12 @@
 <mat-card class="show-card" *ngFor="let show of cinemaHallByShowDate"> 
     <mat-card-content>
         <b>{{show.cinemaHall}}</b>
-        <ul *ngFor="let startTime of show.startDate" class="startTime">
-        
-            <li><button mat-flat-button id="primary" (click)="navigateToSeatLayoutPage(show.cinemaHall,startTime.value)"
-           
-            color="primary">{{startTime.value | date:"hh:mm a"}}</button></li>
+    
+        <ul *ngFor="let detail of show.details" class="startTime">
+            <li><button mat-flat-button id="primary" 
+                (click)="navigateToSeatLayoutPage(detail.cinemaHallName,show.cinemaHall,detail.totalSeats,
+                detail.startTime)"
+            color="primary">{{detail.startTime | date:"hh:mm a"}}</button></li>
             </ul>
         
     </mat-card-content>

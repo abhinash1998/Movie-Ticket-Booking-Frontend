@@ -6,7 +6,6 @@ import { BookingService } from 'src/app/Services/booking.service';
 import { MovieService } from 'src/app/Services/movie.service';
 import { PaymentService } from 'src/app/Services/payment.service';
 import { ShowService } from 'src/app/Services/show.service';
-import { TheatreService } from 'src/app/Services/theatre.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -33,9 +32,9 @@ customerId:any;
   booking!: IBooking;
   ticketPrice:any;
   userFullName:any;
-  constructor(private showContext: ShowService, private theatreContext: TheatreService, 
-    private movieContext:MovieService, private paymentContext: PaymentService,
-    private bookingContext: BookingService, private router:Router) { }
+  constructor(private showContext: ShowService,private movieContext:MovieService,
+     private paymentContext: PaymentService,private bookingContext: BookingService, 
+     private router:Router) { }
 
   ngOnInit(): void {
     this.customerId = localStorage.getItem('customerId');
@@ -47,7 +46,8 @@ customerId:any;
         },
         error: (error) => console.log(error)
       })
-   this.getTheatreDetailsByTheatreName(this.description.theatreName);
+
+      this.getSeats(this.description.totalSeats)
    this.getMovieDetails(this.description.movieId);
    this.invokeStripe();
   }
@@ -62,13 +62,9 @@ customerId:any;
       })
   }
 
-  getTheatreDetailsByTheatreName(theatreName:string){
-    this.theatreContext.getTheatreDetailsByTheatreName(theatreName).
-    pipe(takeWhile(() => this.seatLayoutActionIsActive)).subscribe({
-      next: (res) =>{
-          this.theatreDetails = res.result;
-    
-          this.rows = this.theatreDetails.totalSeats/10;
+  getSeats(totalSeats:number){
+ 
+          this.rows = totalSeats/10;
          
           for(let i=0;i<this.rows;i++){
            this.convertNumberToAlphabet=i+65;
@@ -79,20 +75,24 @@ customerId:any;
            this.columnNumber.push({ value: j+1 })
           }
           
-      },
-      error: (error) => console.log(error)
-    })
-  }
+      }
 
   confirmAndPay() {
-  
-     this.booking ={
+
+    if(this.userFullName == null)
+   this.router.navigate(['/user/login']);
+   else
+   {
+    this.booking ={
       status : 1,
       numberOfSeats: this.storedSeats.length,
       seats: this.storedSeats + "",
       amount: 100 * this.storedSeats.length,
       customerId:  this.customerId,
-      theatreName: this.description.theatreName,
+      showDate: this.description.showDate,
+      startTime: this.description.startTime,
+      cinemaName: this.description.cinemaName,
+      cinemaHallName: this.description.cinemaHallName,
       movieName: this.movieDetails.title
     }
 
@@ -121,9 +121,11 @@ customerId:any;
 
     paymentHandler.open({
       name: this.booking.movieName,
-      description: this.description.theatreName,
+      description: this.description.cinemaName,
       amount: this.ticketPrice * 100,
     });
+   }
+     
   }
  
   invokeStripe() {

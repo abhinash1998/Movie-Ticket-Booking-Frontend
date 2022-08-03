@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeWhile } from 'rxjs';
+import { MovieService } from 'src/app/Services/movie.service';
 import { ShowService } from 'src/app/Services/show.service';
 
 @Component({
@@ -12,18 +13,21 @@ export class CinemaHallByMovieNameComponent implements OnInit {
   movieId!: string;
   cityName!: string;
   theatreActionIsActive: boolean = true
-  newDate:any;
+  newDate: any;
   showDate!: string;
   showDisplay: any;
   cinemaHallName!: string;
   showDateTime!: Date;
   showDates: any = []
+  cinema: any;
   cinemaHallByShowDate: any = []
   showTime!: Date;
-  distinctTheatreName:any;
-  filterCinemaHallByStartTime:any;
+  distinctTheatreName: any;
+  filterCinemaHallByStartTime: any;
+  movieDetails: any;
 
-  constructor(private route: ActivatedRoute, private router:Router, private showContext: ShowService) { }
+  constructor(private route: ActivatedRoute, private router: Router,
+    private showContext: ShowService, private movieContext: MovieService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -31,18 +35,29 @@ export class CinemaHallByMovieNameComponent implements OnInit {
         this.cityName = params['cityName']
     }
     )
-    this.getShowDatesByMovieIdAndCityName(this.movieId, this.cityName)
+    this.getMovieDetails(this.movieId);
+    this.getShowDatesByMovieIdAndCityName(this.movieId, this.cityName);
+  }
+
+  getMovieDetails(movieId: string) {
+
+    this.movieContext.getMovieById(movieId).pipe(takeWhile(() => this.theatreActionIsActive)).subscribe({
+      next: (res) => {
+        this.movieDetails = res.result;
+      },
+      error: (error) => console.log(error)
+    })
   }
 
   getShowDatesByMovieIdAndCityName(movieId: string, cityName: string) {
     this.showContext.getShowDatesByMovieIdAndCityName(movieId, cityName).pipe(takeWhile(() => this.theatreActionIsActive))
-    .subscribe(
-      {
-        next: (res) =>{  
-          this.showDates = res.result;
-        },
-        error: (error) => console.log(error)
-      })
+      .subscribe(
+        {
+          next: (res) => {
+            this.showDates = res.result;
+          },
+          error: (error) => console.log(error)
+        })
   }
 
   clickCard(value: any) {
@@ -53,44 +68,52 @@ export class CinemaHallByMovieNameComponent implements OnInit {
     });
 
     this.showDateTime = value
-    this.showContext.showCinemaHallsByMovieIdAndShowDate(this.movieId, this.cityName, value)
+    this.showContext.showCinemaHallsAndStartTimeByMovieIdAndShowDate(this.movieId, this.cityName, value)
       .pipe(takeWhile(() => this.theatreActionIsActive))
       .subscribe(
         {
-          next: (res) =>{  
+          next: (res) => {
             this.showDisplay = res.result;
-            this.distinctTheatreName = [...new Set(this.showDisplay.map((res: any) => res.theatres.theatreName))];
-           this.cinemaHallByShowDate = [];
-   
-           this.distinctTheatreName.forEach((theatre:any) => {
-            this.filterCinemaHallByStartTime= this.showDisplay.filter((res: any) => res.theatres.theatreName === theatre)
-               .map((item: any) => ({ option: item.startTime, value: item.startTime }));
+            this.distinctTheatreName = [...new Set(this.showDisplay.map((res: any) => res.cinemaId.cinemaName))];
+            this.cinemaHallByShowDate = [];
 
-             this.cinemaHallByShowDate.push(
-               {
-                 cinemaHall: theatre,
-                 startDate: this.filterCinemaHallByStartTime
-               }
-             )
-           });
+            this.distinctTheatreName.forEach((theatre: any) => {
+              this.filterCinemaHallByStartTime = this.showDisplay.filter((res: any) => res.cinemaId.cinemaName === theatre)
+                .map((item: any) => (
+                  {
+                    startTime: item.startTime,
+                    cinemaHallName: item.cinemaHallId.cinemaHallName,
+                    totalSeats: item.cinemaHallId.totalSeats
+                  }));
+
+              this.cinemaHallByShowDate.push(
+                {
+                  cinemaHall: theatre,
+                  details: this.filterCinemaHallByStartTime
+                }
+              )
+            });
           },
           error: (error) => console.log(error)
         })
   }
 
-  navigateToSeatLayoutPage(theatreName:string, startTime:Date){
+  navigateToSeatLayoutPage(cinemaHallName: string, cinemaName: string, totalSeats: number, startTime: Date,) {
     this.showContext.showSubject.next({
       movieId: this.movieId,
       cityName: this.cityName,
       showDate: this.showDateTime,
       startTime: startTime,
-      theatreName: theatreName
+      cinemaName: cinemaName,
+      cinemaHallName: cinemaHallName,
+      totalSeats: totalSeats,
     })
-   this.cinemaHallName = theatreName.toLowerCase().replace(/[^A-Z0-9]+/ig, "-");
-   this.showDate = this.showDate.replace(/[^A-Z0-9]+/ig, "-");
+    this.cinema = cinemaName.toLowerCase().replace(/[^A-Z0-9]+/ig, "-");
+    this.showDate = this.showDate.replace(/[^A-Z0-9]+/ig, "-");
 
-    this.router.navigate([`/user/seatlayout/${this.movieId}/${this.cityName}/${this.cinemaHallName}/${this.showDate}`])
+    this.router.navigate([`/user/seatlayout/${this.movieId}/${this.cityName}/${this.cinema}/${this.showDate}`])
   }
+
   ngOnDestroy() {
     this.theatreActionIsActive = false
   }

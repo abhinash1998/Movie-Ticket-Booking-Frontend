@@ -4,8 +4,9 @@
     <a mat-button *ngIf="login">Welcome {{userFullName}}</a>
     <a mat-button routerLink="/TicketBooking/dashboard">Admin Dashboard</a>
     <a mat-button routerLink="/TicketBooking/movies">Movies</a>
-    <a mat-button routerLink="/TicketBooking/theatres">Theatres</a>
-    <a mat-button routerLink="/TicketBooking/shows">Shows</a>
+    <a mat-button routerLink="/TicketBooking/cinemas">Cinema</a>
+    <a mat-button routerLink="/TicketBooking/cinema-hall">Cinema Hall</a>
+    <a mat-button routerLink="/TicketBooking/show">Show</a>
     <a mat-button routerLink="/TicketBooking/addCity">City</a>
     <a mat-button routerLink="/TicketBooking/booking">Bookings</a>
     <a mat-button  *ngIf="login" (click)="logOutAdmin()" routerLink="/user/login">Logout</a>

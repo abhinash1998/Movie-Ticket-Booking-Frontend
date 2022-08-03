@@ -14,7 +14,7 @@ import { AddShowComponent } from './add-show/add-show.component';
 export class ShowComponent implements OnInit {
 
   showActionIsActive: boolean = true;
-  displayedColumns: string[] = ['showDate', 'startTime', 'endTime', 'title', 'theatreName','cityName'];
+  displayedColumns: string[] = ['showDate', 'startTime', 'endTime', 'title', 'cinemaName','cinemaHallName','cityName'];
   showDisplay = new MatTableDataSource([]);
   length!: number;
   pageSize: number = 5;
@@ -24,11 +24,11 @@ export class ShowComponent implements OnInit {
   constructor(private dialog: MatDialog, private showContext:ShowService) { }
 
   ngOnInit(): void {
-    this.getAllShows();
+    this.getShow();
   }
 
-  getAllShows() {
-    this.showContext.getAllShows().pipe(takeWhile(() => this.showActionIsActive)).subscribe(
+  getShow() {
+    this.showContext.getShow().pipe(takeWhile(() => this.showActionIsActive)).subscribe(
       {
         next: (res) =>{  
           this.showDisplay.data = res.result;
@@ -54,4 +54,5 @@ export class ShowComponent implements OnInit {
   ngOnDestroy() {
     this.showActionIsActive = false;
   }
+
 }

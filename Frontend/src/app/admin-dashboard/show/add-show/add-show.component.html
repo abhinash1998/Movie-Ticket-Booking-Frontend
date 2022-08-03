@@ -44,16 +44,25 @@
           </mat-form-field>
 
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Select Theatre</mat-label>
-            <mat-select formControlName="theatreName" required>
-              <mat-option *ngFor="let theatre of theatresDisplay" [value]="theatre.value">
-                {{theatre.option}}
+            <mat-label>Select Cinema</mat-label>
+            <mat-select formControlName="cinemaName"  (selectionChange)="selectCinema()" [(value)]="selectedCinema" required>
+              <mat-option *ngFor="let cinema of cinemaDisplay" [value]="cinema.value">
+                {{cinema.option}}
               </mat-option>
             </mat-select>
-            <mat-error>Please choose an Theatre</mat-error>
+            <mat-error>Please choose cinema</mat-error>
           </mat-form-field>
 
-         
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Select Cinema Hall</mat-label>
+            <mat-select formControlName="cinemaHallName" required>
+              <mat-option *ngFor="let cinemaHall of cinemaHallDisplay" [value]="cinemaHall.value">
+                {{cinemaHall.option}}
+              </mat-option>
+            </mat-select>
+            <mat-error>Please choose Cinema Hall</mat-error>
+          </mat-form-field>
+
           
         <button mat-flat-button color="primary">Register Show</button>
     </form>

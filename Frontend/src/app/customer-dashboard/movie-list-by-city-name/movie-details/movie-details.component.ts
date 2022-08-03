@@ -16,19 +16,15 @@ export class MovieDetailsComponent implements OnInit {
   movieActionIsActive: boolean = true;
   movieDetails: any;
   trailerLink!: string;
-  userFullName:any=""
   constructor(private route: ActivatedRoute, private movieContext: MovieService, 
     private _sanitizer: DomSanitizer, private router: Router) { }
 
   ngOnInit(): void {
-    this.userFullName = localStorage.getItem('loggedUser');
     this.route.params.subscribe(params => {
       this.movieId = params['movieId'],
         this.cityName = params['cityName']
     }
-
     );
-
     this.getMovieDetails(this.movieId)
   }
 
@@ -51,12 +47,7 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   bookTicket(){
-
-   if(this.userFullName == null)
-   this.router.navigate(['/user/login']);
-   else
   this.router.navigate([`/user/cinema-hall/${this.movieId}/city/${this.cityName}`]);
-
   }
 
  

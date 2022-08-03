@@ -11,7 +11,7 @@ import { BookingService } from 'src/app/Services/booking.service';
 })
 export class MyBookingComponent implements OnInit {
 
-  displayedColumns: string[] = ['movieName', 'theatreName', 'numberOfSeats', 'seats', 'amount', 'timeStamp'];
+  displayedColumns: string[] = ['movieName', 'cinemaName', 'numberOfSeats', 'seats', 'amount', 'timeStamp'];
   bookingDisplay = new MatTableDataSource([]);
   bookingActionIsActive: boolean = true;
   length!: number;
