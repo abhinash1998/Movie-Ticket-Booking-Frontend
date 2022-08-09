@@ -1,6 +1,8 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { takeWhile } from 'rxjs';
 import { CinemaHallService } from 'src/app/Services/cinema-hall.service';
@@ -21,10 +23,10 @@ export class CinemaHallComponent implements OnInit {
   pageSizeOptions: any = [5, 15, 50];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private cinemaHallContext: CinemaHallService, public dialog: MatDialog) {
   }
-
 
   ngOnInit(): void {
     this.showCinemaHall();
@@ -51,6 +53,12 @@ export class CinemaHallComponent implements OnInit {
   }
   ngAfterViewInit() {
     this.cinemaHallDisplay.paginator = this.paginator;
+    this.cinemaHallDisplay.sort = this.sort;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.cinemaHallDisplay.filter = filterValue.trim().toLowerCase();
   }
 
   ngOnDestroy() {

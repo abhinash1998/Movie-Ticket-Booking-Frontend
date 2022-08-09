@@ -6,6 +6,7 @@ import { MovieService } from 'src/app/Services/movie.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { Router } from '@angular/router';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-movies',
@@ -22,6 +23,7 @@ export class MoviesComponent implements OnInit {
   pageSizeOptions: any = [5, 15, 50];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) movieTbSort!: MatSort;
 
   constructor(private movieContext: MovieService, public dialog: MatDialog, private router: Router) { }
 
@@ -55,6 +57,12 @@ export class MoviesComponent implements OnInit {
 
   ngAfterViewInit() {
     this.moviesDisplay.paginator = this.paginator;
+    this.moviesDisplay.sort = this.movieTbSort;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.moviesDisplay.filter = filterValue.trim().toLowerCase();
   }
 
   convertMinuteToHour(minute: number) {

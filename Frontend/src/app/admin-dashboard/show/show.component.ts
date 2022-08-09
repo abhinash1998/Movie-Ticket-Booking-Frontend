@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { takeWhile } from 'rxjs';
 import { ShowService } from 'src/app/Services/show.service';
@@ -21,6 +22,8 @@ export class ShowComponent implements OnInit {
   pageSizeOptions: any = [5, 15, 50];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  
   constructor(private dialog: MatDialog, private showContext:ShowService) { }
 
   ngOnInit(): void {
@@ -40,6 +43,12 @@ export class ShowComponent implements OnInit {
 
   ngAfterViewInit() {
     this.showDisplay.paginator = this.paginator;
+    this.showDisplay.sort = this.sort;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.showDisplay.filter = filterValue.trim().toLowerCase();
   }
 
   openDialog() {

@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { takeWhile } from 'rxjs';
 import { CinemaHallService } from 'src/app/Services/cinema-hall.service';
 import { CinemaService } from 'src/app/Services/cinema.service';
+import { CityService } from 'src/app/Services/city.service';
 
 @Component({
   selector: 'app-add-cinema-hall',
@@ -14,7 +15,10 @@ export class AddCinemaHallComponent implements OnInit {
   cinemaHallForm: FormGroup;
   cinemaActionIsActive: boolean = true;
   cinemaDisplay:any;
-  constructor(private fb: FormBuilder, private cinemaContext: CinemaService, private cinemaHallContext: CinemaHallService) {
+  cityDisplay:any;
+
+  constructor(private fb: FormBuilder, private cinemaContext: CinemaService, 
+    private cinemaHallContext: CinemaHallService) {
     this.cinemaHallForm = this.fb.group({
       cinemaHallName: ['', [Validators.required]],
       totalSeats: ['', [Validators.required]],
@@ -24,7 +28,7 @@ export class AddCinemaHallComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.showCinema()
+    this.showCinema();
   }
   
   showCinema() {

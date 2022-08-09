@@ -1,21 +1,30 @@
 <app-navbar></app-navbar>
 <button mat-flat-button color="primary" (click)="openDialog()">Add New Cinema Hall</button>
-<h4>Cinemas</h4>
+<h4>Cinema Hall</h4>
+
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Search"/>
+  </mat-form-field>
+
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="cinemaHallDisplay">
+    <table mat-table [dataSource]="cinemaHallDisplay"  matSort>
 
         <ng-container matColumnDef="cinemaHallName">
-            <th mat-header-cell *matHeaderCellDef>Cinema Hall Name</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cinema Hall Name</th>
             <td mat-cell *matCellDef="let cinemaHall"> {{cinemaHall.cinemaHallName}} </td>
         </ng-container>
 
         <ng-container matColumnDef="totalSeats">
-            <th mat-header-cell *matHeaderCellDef>Total Seats</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Seats</th>
             <td mat-cell *matCellDef="let cinemaHall"> {{cinemaHall.totalSeats}} </td>
         </ng-container>
 
         <ng-container matColumnDef="cinemaName">
-            <th mat-header-cell *matHeaderCellDef>Cinema Name</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cinema Name</th>
             <td mat-cell *matCellDef="let cinemaHall"> {{cinemaHall.cinemaId.cinemaName}} </td>
         </ng-container>
 

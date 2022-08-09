@@ -13,28 +13,19 @@ export class CityComponent implements OnInit {
   showActionIsActive: boolean = true;
   cityForm: FormGroup;
   moviesDisplay: any = [];
+  error: boolean = false;
+  errorMessage!: string;
 
   constructor(private fb: FormBuilder, private movieContext: MovieService, private cityContext: CityService) {
     this.cityForm = this.fb.group({
       cityName: ['', [Validators.required]],
-      state: ['', [Validators.required]],
-      movieName: ['', [Validators.required]]
+      state: ['', [Validators.required]]
     })
   }
 
   ngOnInit(): void {
-    this.getMovies();
   }
 
-  getMovies() {
-    this.movieContext.getMovies().pipe(takeWhile(() => this.showActionIsActive)).subscribe(
-      {
-        next: (res) =>{
-          this.moviesDisplay = res.result;
-        },
-        error: (error) => console.log(error)
-      })
-  }
 
   addCity() {
     this.cityContext.addCity(this.cityForm.value)
@@ -43,7 +34,10 @@ export class CityComponent implements OnInit {
           next: () =>{
             window.location.reload();
           },
-          error: (error) => console.log(error)
+          error: (error) => {
+            this.error = true;
+            this.errorMessage = error.error.message
+          }
         })
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { takeWhile } from 'rxjs';
 import { CinemaService } from 'src/app/Services/cinema.service';
@@ -21,7 +22,8 @@ export class CinemaComponent implements OnInit {
   pageSizeOptions: any = [5, 15, 50];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  @ViewChild(MatSort) sort!: MatSort;
+  
   constructor(private cinemaContext: CinemaService, public dialog: MatDialog) {
   }
 
@@ -49,8 +51,15 @@ export class CinemaComponent implements OnInit {
         window.location.reload();
       });
   }
+
   ngAfterViewInit() {
     this.cinemaDisplay.paginator = this.paginator;
+    this.cinemaDisplay.sort = this.sort;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.cinemaDisplay.filter = filterValue.trim().toLowerCase();
   }
 
   ngOnDestroy() {
