@@ -11,7 +11,7 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
-  addMovie(movie: IMovie): Observable<IMovie> {
+  addMovie(movie:IMovie): Observable<IMovie> {
 
     const movieData: any = new FormData();
 
@@ -26,6 +26,7 @@ export class MovieService {
     movieData.append("durationInMins", movie.durationInMins);
     movieData.append("format", movie.format);
     movieData.append("imagePath", movie.imagePath);
+    movieData.append("cityName", JSON.stringify(movie.cityName));
 
     return this.http.post<IMovie>(`${environment.baseUrl}/addMovie`, movieData);
   }
@@ -46,3 +47,5 @@ export class MovieService {
     return this.http.get(`${environment.baseUrl}/deleteMovie`, { params: queryParams });
   }
 }
+
+

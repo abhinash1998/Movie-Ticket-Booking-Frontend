@@ -84,6 +84,16 @@
       <input type="text" matInput formControlName="format">
     </mat-form-field>
 
+
+    <mat-form-field  class="example-full-width" appearance="fill">
+      <mat-label>Select City</mat-label>
+        <mat-select formControlName="cityName" multiple>
+          <mat-option *ngFor="let city of cityDisplay" [value]="city.value">
+              {{city.option}}
+          </mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <button mat-flat-button color="primary">Save Movie</button>
   </form>
 </div>

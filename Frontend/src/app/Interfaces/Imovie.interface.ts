@@ -11,5 +11,5 @@ export interface IMovie
     durationInMins: string,
     format: string,
     imagePath: string
-
+    cityName: String[]
 }
