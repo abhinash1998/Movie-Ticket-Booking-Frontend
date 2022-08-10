@@ -23,3 +23,20 @@
     font-size: 14px;
     width: 100%;
   }
+
+  /* .mat-card-image:first-child {
+    margin-top: -16px;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    height: 87%;
+} */
+
+.mat-card-image {
+  height: 87%;
+}
+
+h4,p{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

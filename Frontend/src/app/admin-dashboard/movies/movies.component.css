@@ -10,3 +10,14 @@ table {
 h4{
   margin-left: 40%;
 }
+
+.mat-icon{
+  color: red;
+  cursor: pointer;
+}
+
+.form-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 

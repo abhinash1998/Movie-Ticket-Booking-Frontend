@@ -23,7 +23,9 @@ export class AddShowComponent implements OnInit {
   selectedCinema:any;
   cinemaDisplay:any;
   cinemaHallDisplay:any;
-
+  error: boolean = false;
+  errorMessage!: string;
+  
   constructor(private fb:FormBuilder, private showContext:ShowService, 
      private cityContext:CityService, private cinemaContext:CinemaService,
      private cinemaHallContext:CinemaHallService) {
@@ -76,6 +78,7 @@ export class AddShowComponent implements OnInit {
 
 
   
+
   selectCinema() {
     this.cinemaHallContext.getCinemaHallByCinemaName(this.selectedCinema).pipe(takeWhile(() => this.showActionIsActive)).subscribe(
       {
@@ -93,7 +96,10 @@ export class AddShowComponent implements OnInit {
           next: () =>{
             window.location.reload();
           },
-          error: (error) => console.log(error)
+          error: (error) => {
+            this.error = true;
+            this.errorMessage = error.error.message
+          }
         })
   }
 

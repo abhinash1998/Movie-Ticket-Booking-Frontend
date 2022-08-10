@@ -25,7 +25,9 @@ export class CinemaHallByMovieNameComponent implements OnInit {
   distinctTheatreName: any;
   filterCinemaHallByStartTime: any;
   movieDetails: any;
-
+  error: boolean = false;
+  errorMessage!: string;
+  
   constructor(private route: ActivatedRoute, private router: Router,
     private showContext: ShowService, private movieContext: MovieService) { }
 
@@ -56,7 +58,10 @@ export class CinemaHallByMovieNameComponent implements OnInit {
           next: (res) => {
             this.showDates = res.result;
           },
-          error: (error) => console.log(error)
+          error: (error) => {
+            this.error = true;
+            this.errorMessage = error.error.message
+          }
         })
   }
 

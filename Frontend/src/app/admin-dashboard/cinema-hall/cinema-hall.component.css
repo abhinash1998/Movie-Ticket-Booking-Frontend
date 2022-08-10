@@ -10,3 +10,10 @@ table {
 h4{
     margin-left: 40%;
   } 
+  
+  .form-field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } 
+  

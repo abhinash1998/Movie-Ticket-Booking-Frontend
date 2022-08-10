@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { takeWhile } from 'rxjs';
 import { BookingService } from 'src/app/Services/booking.service';
@@ -11,7 +12,8 @@ import { BookingService } from 'src/app/Services/booking.service';
 })
 export class BookingsComponent implements OnInit {
 
-  displayedColumns: string[] = ['movieName', 'fullName', 'cinemaName', 'numberOfSeats', 'seats', 'amount', 'timeStamp'];
+  displayedColumns: string[] = ['movieName', 'fullName',
+  'timeStamp','action'];
   bookingDisplay = new MatTableDataSource([]);
   bookingActionIsActive: boolean = true;
   length!: number;
@@ -20,6 +22,8 @@ export class BookingsComponent implements OnInit {
   customerId: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  
   constructor(private bookingContext: BookingService) { }
 
   ngOnInit(): void {
@@ -38,6 +42,12 @@ export class BookingsComponent implements OnInit {
 
   ngAfterViewInit() {
     this.bookingDisplay.paginator = this.paginator;
+    this.bookingDisplay.sort = this.sort;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.bookingDisplay.filter = filterValue.trim().toLowerCase();
   }
 
   ngOnDestroy() {

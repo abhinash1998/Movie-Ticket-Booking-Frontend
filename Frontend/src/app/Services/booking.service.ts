@@ -24,6 +24,14 @@ export class BookingService {
       { params: queryParams });
   }
 
+  getBookingDetailsById(bookingId: string): Observable<any> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("bookingId", bookingId);
+
+    return this.http.get(`${environment.baseUrl}/getBookingDetailsById`,
+      { params: queryParams });
+  }
+
   getLatestBookingByUserId(userId: string): Observable<any> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("userId", userId);
@@ -32,7 +40,6 @@ export class BookingService {
       { params: queryParams });
   }
 
-  
   getBookings(): Observable<any> {
     return this.http.get(`${environment.baseUrl}/getBookings`);
   }

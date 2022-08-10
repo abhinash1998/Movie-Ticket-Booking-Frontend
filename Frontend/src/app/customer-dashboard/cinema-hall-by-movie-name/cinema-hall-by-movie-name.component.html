@@ -6,7 +6,10 @@
     <p>{{movieDetails.releaseDate | date: 'longDate' }}</p>
 </div>
 
-<ul *ngFor="let showDate of showDates" class="showDate">
+<h4 *ngIf="error" class="text-center"> {{errorMessage}}</h4>
+
+
+<ul *ngFor="let showDate of showDates" class="show-time">
    <li> <button  (click)="clickCard(showDate.value)" id="primary" mat-flat-button color="primary">{{showDate.value | date:"EEEE, MMMM d"}}
         </button>
         </li>
@@ -16,7 +19,7 @@
     <mat-card-content>
         <b>{{show.cinemaHall}}</b>
     
-        <ul *ngFor="let detail of show.details" class="startTime">
+        <ul *ngFor="let detail of show.details" class="show-time">
             <li><button mat-flat-button id="primary" 
                 (click)="navigateToSeatLayoutPage(detail.cinemaHallName,show.cinemaHall,detail.totalSeats,
                 detail.startTime)"

@@ -1,0 +1,14 @@
+
+        <mat-card class="example-card">
+            <mat-card-content>
+                <h4>Booking Ticket</h4>
+                <b>Customer Name: </b><span>{{bookingDetails.customerId.fullName}}</span><br /><br />
+                <b>Theatre Name: </b><span>{{bookingDetails.cinemaName}},{{bookingDetails.cinemaHallName}}</span><br /><br />
+                <b>Show Information: </b><span>{{bookingDetails.showDate | date:"EEEE, MMMM d"}}, 
+                    {{bookingDetails.startTime | date:"hh:mm a"}}</span><br /><br />
+                <b>Booking Date: </b><span>{{bookingDetails.timeStamp | date: 'longDate'}}</span><br /><br />
+                <b>No of Seats: </b><span>{{bookingDetails.numberOfSeats}}</span><br /><br />
+                <b>Seats: </b><span>{{bookingDetails.seats}}</span><br /><br />
+                <b>Amount: </b><span>{{bookingDetails.amount}}</span><br /><br />
+            </mat-card-content>
+        </mat-card>
