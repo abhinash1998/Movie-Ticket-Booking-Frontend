@@ -1,10 +1,9 @@
 <mat-toolbar color="primary">
-    <span>Book My Show</span>
+    <a mat-button routerLink="/user/movie-list">Book My Show</a>
     <a mat-button *ngIf="login">Welcome {{userFullName}}</a>
 
     <span class="fill-remaining-space"></span>
     <a mat-button *ngIf="!login" routerLink="/user/login">Login</a>
-    <a mat-button  routerLink="/user/movie-list">Movies</a>
     <a mat-button *ngIf="!login" routerLink="/user/register">Register</a>
     <a mat-button *ngIf="login" routerLink="/user/booking-history">My Bookings</a>
     <a mat-button *ngIf="login" (click)="logOutUser()" routerLink="/user/login">Logout</a>

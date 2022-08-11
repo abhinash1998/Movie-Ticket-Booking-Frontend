@@ -4,15 +4,11 @@
     margin-top: 2%;
   }
 
-  .startTime{
+  .show-time{
         list-style-type:none;
         display: inline-block;
   }
 
-  .showDate{
-    list-style-type:none;
-    display: inline-block;
-}
 
 .show-card{
     width: 92%;
@@ -29,4 +25,6 @@
     color: white;
 }
 
-
+h4{
+  margin-top: 10%;
+}

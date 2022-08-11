@@ -2,6 +2,7 @@
 <button mat-flat-button color="primary" (click)="openDialog()">Add New Cinema Hall</button>
 <h4>Cinema Hall</h4>
 
+<div class="form-field">
 <mat-form-field>
     <mat-label>Filter</mat-label>
     <input
@@ -9,6 +10,7 @@
       (keyup)="applyFilter($event)"
       placeholder="Search"/>
   </mat-form-field>
+</div>
 
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="cinemaHallDisplay"  matSort>

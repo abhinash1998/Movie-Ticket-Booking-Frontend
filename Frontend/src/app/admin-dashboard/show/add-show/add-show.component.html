@@ -2,6 +2,7 @@
 
 <mat-dialog-content>
     <form class="example-form" (ngSubmit)='addShow()' [formGroup]='showForm'>
+      <mat-error *ngIf="error"> {{errorMessage}}</mat-error>
 
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Show Date</mat-label>
@@ -36,8 +37,8 @@
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Select Movie</mat-label>
             <mat-select formControlName="movieName" required>
-              <mat-option *ngFor="let movie of moviesDisplay" [value]="movie.movieId.title">
-                {{movie.movieId.title}}
+              <mat-option *ngFor="let movie of moviesDisplay" [value]="movie.title">
+                {{movie.title}}
               </mat-option>
             </mat-select>
             <mat-error>Please choose an Movie</mat-error>

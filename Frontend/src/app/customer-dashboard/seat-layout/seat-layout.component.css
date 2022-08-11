@@ -43,8 +43,10 @@ input[type="checkbox"] {
   outline: 0.5px solid green;
 }
 
-ul.seat_w3ls {
-  margin: 2em 0;
+.seat_w3ls {
+
+  list-style-type:none;
+  display: inline-block;
 }
 
 .smallBox::before {
@@ -68,13 +70,10 @@ ul.seat_w3ls {
   background-color: #fff;
 }
 
-h1{
+h1,p,li{
   color: aliceblue;
 }
 
-p{
-  color: aliceblue;
-}
 
 .mat-flat-button{
   margin-left: 16%;
