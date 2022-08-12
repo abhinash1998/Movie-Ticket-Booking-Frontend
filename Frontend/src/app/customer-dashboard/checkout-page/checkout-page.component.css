@@ -1,0 +1,20 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.make-payment {
+    margin-left: 30%;
+    margin-top: 2%;
+}
+
+.mat-flat-button {
+    margin-left: 23%;
+    margin-top: 6%;
+    width: 53%;
+}
