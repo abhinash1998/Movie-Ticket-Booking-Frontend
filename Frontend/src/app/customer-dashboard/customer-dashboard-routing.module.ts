@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { CinemaHallByMovieNameComponent } from './cinema-hall-by-movie-name/cinema-hall-by-movie-name.component';
 import { LoginComponent } from './login/login.component';
 import { MovieDetailsComponent } from './movie-list-by-city-name/movie-details/movie-details.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'movie-list', component: MovieListByCityNameComponent },
   { path: 'booking-history', component: MyBookingComponent },
   { path: 'show-ticket', component: ShowTicketComponent },
+  { path: 'checkout', component: CheckoutPageComponent },
   { path: 'movie-details/:movieId/city/:cityName', component: MovieDetailsComponent },
   { path: 'cinema-hall/:movieId/city/:cityName', component: CinemaHallByMovieNameComponent },
   { path: 'seatlayout/:movieId/:cityName/:theatreName/:showDate', component: SeatLayoutComponent }

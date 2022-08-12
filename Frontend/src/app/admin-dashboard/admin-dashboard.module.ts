@@ -27,6 +27,10 @@ import { CinemaHallComponent } from './cinema-hall/cinema-hall.component';
 import { AddCinemaHallComponent } from './cinema-hall/add-cinema-hall/add-cinema-hall.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
+import {MatSortModule} from '@angular/material/sort';
+import { BookingDetailsComponent } from './bookings/booking-details/booking-details.component';
+import {MatCardModule} from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,8 @@ import { MatIconModule } from '@angular/material/icon';
     CinemaComponent,
     AddCinemaComponent,
     CinemaHallComponent,
-    AddCinemaHallComponent
+    AddCinemaHallComponent,
+    BookingDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +64,10 @@ import { MatIconModule } from '@angular/material/icon';
     MatTimepickerModule,
     MatSelectModule,
     MatSidenavModule,
-    MatIconModule
+    MatIconModule,
+    MatSortModule,
+    MatCardModule,
+    MatDividerModule
   ]
 })
 export class AdminDashboardModule { }

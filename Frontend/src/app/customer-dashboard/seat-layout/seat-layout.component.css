@@ -18,24 +18,19 @@ td {
 .body {
   background: url(../../../assets/Images/banner.jpg) no-repeat center;
   background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  -ms-background-size: cover;
   background-attachment: fixed;
   font-family: 'Source Sans Pro', sans-serif;
-  margin-bottom: 1%;
 }
 
 .seats{
   height: 84%;
   width: 52%;
-  cursor: pointer;
-  
+  cursor: pointer; 
 }
 
 input[type="checkbox"]:checked {
   filter: invert(100%) hue-rotate(18deg) brightness(1.7);
+  color: blue;
 
 }
 
@@ -44,9 +39,7 @@ input[type="checkbox"] {
 }
 
 .seat_w3ls {
-
   list-style-type:none;
-  display: inline-block;
 }
 
 .smallBox::before {
@@ -57,16 +50,13 @@ input[type="checkbox"] {
   margin-right: 10px;
 }
 
-.greenBox::before {
+.yellowBox::before {
   content: "";
-  background: Green;
+  background: yellow;
 }
 
 .emptyBox::before {
   content: "";
-  box-shadow: inset 0px 2px 3px 0px rgb(255, 152, 0), 0px 1px 0px 0px rgba(255, 255, 255, .8);
-  -moz-box-shadow: inset 0px 2px 3px 0px rgb(255, 152, 0), 0px 1px 0px 0px rgba(255, 255, 255, .8);
-  -webkit-box-shadow: inset 0px 2px 3px 0px rgb(255, 152, 0), 0px 1px 0px 0px rgba(255, 255, 255, .8);
   background-color: #fff;
 }
 
@@ -74,8 +64,11 @@ h1,p,li{
   color: aliceblue;
 }
 
-
 .mat-flat-button{
   margin-left: 16%;
   margin-top: 2%;
+}
+
+.container{
+  padding-bottom: 3%;
 }

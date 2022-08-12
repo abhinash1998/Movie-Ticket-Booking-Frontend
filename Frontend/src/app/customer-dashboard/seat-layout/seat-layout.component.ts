@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { takeWhile } from 'rxjs';
 import { IBooking } from 'src/app/Interfaces/IBooking.interface';
 import { BookingService } from 'src/app/Services/booking.service';
+import { EmailService } from 'src/app/Services/email.service';
 import { MovieService } from 'src/app/Services/movie.service';
 import { PaymentService } from 'src/app/Services/payment.service';
 import { ShowService } from 'src/app/Services/show.service';
@@ -14,136 +15,87 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./seat-layout.component.css']
 })
 export class SeatLayoutComponent implements OnInit {
-  
-  columnNumber:any=[]
-  rowNumber:any=[]
+
+  columnNumber: any = []
+  rowNumber: any = []
   convertNumberToAlphabet!: number;
   theatreDetails: any;
-  seatLayoutActionIsActive:boolean = true;
-  columns:number=10
-  rows:any;
-  description:any
-  movieDetails:any;
-  paymentHandler: any = null;
-  success: boolean = false;
-  failure:boolean = false;
-storedSeats:any=[];
-customerId:any;
+  seatLayoutActionIsActive: boolean = true;
+  columns: number = 10
+  rows: any;
+  description: any
+  movieDetails: any;
+  storedSeats: any = [];
+  customerId: any;
   booking!: IBooking;
-  ticketPrice:any;
-  userFullName:any;
-  constructor(private showContext: ShowService,private movieContext:MovieService,
-     private paymentContext: PaymentService,private bookingContext: BookingService, 
-     private router:Router) { }
+
+  constructor(private showContext: ShowService, private movieContext: MovieService,
+    private bookingContext: BookingService, private router: Router) { }
 
   ngOnInit(): void {
     this.customerId = localStorage.getItem('customerId');
-    this.userFullName = localStorage.getItem('loggedUser');
     this.showContext.showSubject.subscribe(
       {
-        next: (res) =>{  
-          this.description=res;
+        next: (res) => {
+          this.description = res;
         },
         error: (error) => console.log(error)
       })
 
-      this.getSeats(this.description.totalSeats)
-   this.getMovieDetails(this.description.movieId);
-   this.invokeStripe();
+    this.getSeats(this.description.totalSeats)
+    this.getMovieDetails(this.description.movieId);
   }
 
-  getMovieDetails(movieId: string){
+  getMovieDetails(movieId: string) {
     this.movieContext.getMovieById(movieId).pipe(takeWhile(() => this.seatLayoutActionIsActive)).subscribe(
       {
-        next: (res) =>{
-          this.movieDetails = res.result;     
+        next: (res) => {
+          this.movieDetails = res.result;
         },
         error: (error) => console.log(error)
       })
   }
 
-  getSeats(totalSeats:number){
- 
-          this.rows = totalSeats/10;
-         
-          for(let i=0;i<this.rows;i++){
-           this.convertNumberToAlphabet=i+65;
-           this.rowNumber.push({ value: String.fromCharCode(this.convertNumberToAlphabet) })
-          }
-       
-          for(let j=0;j<this.columns;j++){
-           this.columnNumber.push({ value: j+1 })
-          }
-          
-      }
+  getSeats(totalSeats: number) {
+
+    this.rows = totalSeats / 10;
+
+    for (let i = 0; i < this.rows; i++) {
+      this.convertNumberToAlphabet = i + 65;
+      this.rowNumber.push({ value: String.fromCharCode(this.convertNumberToAlphabet) })
+    }
+
+    for (let j = 0; j < this.columns; j++) {
+      this.columnNumber.push({ value: j + 1 })
+    }
+
+  }
 
   confirmAndPay() {
 
-    if(this.userFullName == null)
-   this.router.navigate(['/user/login']);
-   else
-   {
-    this.booking ={
-      status : 1,
+
+    this.bookingContext.bookingSubject.next({
+      status: 1,
       numberOfSeats: this.storedSeats.length,
       seats: this.storedSeats + "",
       amount: 100 * this.storedSeats.length,
-      customerId:  this.customerId,
+      customerId: this.customerId,
       showDate: this.description.showDate,
       startTime: this.description.startTime,
       cinemaName: this.description.cinemaName,
       cinemaHallName: this.description.cinemaHallName,
       movieName: this.movieDetails.title
-    }
+    })
+    this.router.navigate(['/user/checkout']);
 
-    const paymentHandler = (<any>window).StripeCheckout.configure({
-      key: `${environment.apiKey}`,
-      locale: 'auto',
-      token: function (stripeToken: any) {
-        paymentstripe(stripeToken);
-      },
-    });
- 
-    const paymentstripe = (stripeToken: any) => {
-      this.paymentContext.makePayment(stripeToken.email,this.booking.amount).subscribe((data: any) => {
-        if (data.status == true) {
-          this.bookingContext.createBooking(this.booking).subscribe(res=>{
-            this.router.navigate(['/user/show-ticket']);
-          })
-        }
-        else {
-          this.failure = true
-        }
-      });
-    };
-
-     this.ticketPrice = this.booking.amount;
-
-    paymentHandler.open({
-      name: this.booking.movieName,
-      description: this.description.cinemaName,
-      amount: this.ticketPrice * 100,
-    });
-   }
-     
-  }
- 
-  invokeStripe() {
-    if (!window.document.getElementById('stripe-script')) {
-      const script = window.document.createElement('script');
-      script.id = 'stripe-script';
-      script.type = 'text/javascript';
-      script.src = 'https://checkout.stripe.com/checkout.js';
-      window.document.body.appendChild(script);
-    }
   }
 
-  onSelected(selectedSeats:any){
-   this.storedSeats.push(selectedSeats);
+  onSelected(selectedSeats: any) {
+    this.storedSeats.push(selectedSeats);
   }
 
   ngOnDestroy() {
     this.seatLayoutActionIsActive = false;
   }
- 
+
 }

@@ -12,7 +12,7 @@ export class PaymentService {
   constructor(private http:HttpClient) { }
 
   makePayment(email:any, amount:any): Observable<any>{
-    const  paymentData = {email,amount} 
+    const  paymentData = {email,amount};
     return this.http.post<any>(`${environment.baseUrl}/createPayment`, paymentData);
   }
 }

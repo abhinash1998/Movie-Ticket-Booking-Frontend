@@ -4,10 +4,9 @@
 <iframe width="560" height="315" [src]="movieDetails.trailerLink" frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen></iframe>
-
 <mat-card class="example-card">
     <mat-card-content>
-        <h4>{{movieDetails.title}}</h4>
+        <h3>{{movieDetails.title}}</h3>
         <b>Cast: </b><span>{{movieDetails.cast}}</span><br /><br />
         <b>Director: </b><span>{{movieDetails.director}}</span><br /><br />
         <b>Format: </b><span>{{movieDetails.format}}</span><br /><br />
@@ -16,6 +15,8 @@
         <b>Duration: </b><span>{{convertMinuteToHour(movieDetails.durationInMins)}}</span><br /><br />
         <b>Genre: </b><span>{{movieDetails.genre}}</span><br /><br />
     </mat-card-content>
+
+    
 
     <mat-card-footer>
         <button mat-flat-button color="primary"

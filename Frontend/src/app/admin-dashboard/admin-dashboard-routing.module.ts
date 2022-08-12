@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BookingDetailsComponent } from './bookings/booking-details/booking-details.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { CinemaHallComponent } from './cinema-hall/cinema-hall.component';
 import { CinemaComponent } from './cinema/cinema.component';
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'cinema-hall', component: CinemaHallComponent },
   { path: 'booking', component: BookingsComponent },
   { path: 'show', component: ShowComponent },
-  { path: 'addCity', component: CityComponent }
+  { path: 'addCity', component: CityComponent },
+  { path: 'booking-details/:bookingId', component: BookingDetailsComponent  }
 ];
 
 @NgModule({

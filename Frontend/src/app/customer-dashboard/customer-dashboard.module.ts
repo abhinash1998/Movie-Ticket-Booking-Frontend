@@ -21,6 +21,8 @@ import { MyBookingComponent } from './my-booking/my-booking.component';
 import {MatTableModule} from '@angular/material/table'
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ShowTicketComponent } from './show-ticket/show-ticket.component';
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { ShowTicketComponent } from './show-ticket/show-ticket.component';
     CinemaHallByMovieNameComponent,
     SeatLayoutComponent,
     MyBookingComponent,
-    ShowTicketComponent
+    ShowTicketComponent,
+    CheckoutPageComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +50,8 @@ import { ShowTicketComponent } from './show-ticket/show-ticket.component';
     MatCardModule,
     MatTableModule,
     MatPaginatorModule,
-    MatIconModule
+    MatIconModule,
+    NgxStripeModule.forRoot('pk_test_51LQVt5SIWQnYJ3odEwV3uCQfIPXou7S6EwoFpM8vBLw7bYQqMfdCsMDCniRkUWwGRhB1yfcfNmmKgx80gbZD0k1P009WVhrFSU')
   ]
 })
 export class CustomerDashboardModule { }

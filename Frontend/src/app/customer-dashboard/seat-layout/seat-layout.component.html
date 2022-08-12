@@ -1,24 +1,23 @@
-
 <div class="body">
     <div class="container">
- 
+
         <h1>{{movieDetails.title}}</h1>
-         <p>{{description.cinemaName}},{{description.cinemaHallName}} | {{description.showDate | date:"EEEE, MMMM d"}}, 
-            {{description.startTime | date:"hh:mm a"}} </p> 
+        <p>{{description.cinemaName}},{{description.cinemaHallName}} | {{description.showDate | date:"EEEE, MMMM d"}},
+            {{description.startTime | date:"hh:mm a"}} </p>
 
         <div class="w3ls-reg">
-           
+
             <ul class="seat_w3ls">
-                <li class="smallBox greenBox">Selected/Booked Seat</li>
+                <li class="smallBox yellowBox">Selected/Booked Seat</li>
 
                 <li class="smallBox emptyBox">Empty Seat</li>
             </ul>
-            <p>Please Select your Seats NOW</p>
+            <!-- <p>Please Select your Seats NOW</p> -->
             <div class="seatStructure txt-center">
                 <table id="seatsBlock">
                     <tr>
                         <td></td>
-                        <td >1</td>
+                        <td>1</td>
                         <td>2</td>
                         <td>3</td>
                         <td>4</td>
@@ -32,7 +31,7 @@
                     <tr *ngFor="let row of rowNumber">
                         <td>{{row.value}}</td>
                         <td *ngFor="let column of columnNumber">
-                            <input type="checkbox" class="seats"  (click)="onSelected(row.value+column.value)">
+                            <input type="checkbox" class="seats" (click)="onSelected(row.value+column.value)">
                         </td>
                     </tr>
 
@@ -40,8 +39,8 @@
                 <button mat-flat-button color="primary" (click)="confirmAndPay()">Book Now</button>
 
             </div>
-           
+
         </div>
-      
+
     </div>
 </div>

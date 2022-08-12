@@ -4,13 +4,11 @@
     cursor: pointer;
     margin-left: 48%;
     margin-top: -24%;
-    background-color: gainsboro;
 }
   
 .movie-card{
     max-width: 700px;
     margin-left: 2%;
-    background-color: gainsboro;
 }  
 
 iframe{
@@ -19,6 +17,7 @@ iframe{
 }
 h4{
     margin-top: 3%;
+    color: aliceblue;
     margin-left: 2%;
 }
 
@@ -27,5 +26,7 @@ h4{
 }
 
 .movie-details{
-    background-color: powderblue;
+        background: url(../../../../assets/Images/images.jpg) no-repeat center;
+        background-size: cover;
+        background-attachment: fixed;     
 }

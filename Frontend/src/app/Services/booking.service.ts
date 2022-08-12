@@ -11,6 +11,10 @@ export class BookingService {
 
   constructor(private http: HttpClient) { }
 
+  public bookingSubject = new BehaviorSubject<any>({ status: 0, numberOfSeats: 0, 
+    amount: 0, customerId: "", showDate: "",startTime: "",cinemaName: "", 
+    cinemaHallName: "",movieName: "" });
+
   createBooking(booking: IBooking): Observable<IBooking> {
 
     return this.http.post<IBooking>(`${environment.baseUrl}/createBooking`, booking);
