@@ -1,17 +1,15 @@
 .example-card {
-    width: 43%;
+    width: 55%;
     height: 60%;
     margin-left: 3%;
     margin-top: 2%;
-    background-color: burlywood;
 }
 
 .mat-flat-button{
-    margin-left: 2%;
+    margin-left: 4%;
     margin-top: 2%;
 }
 
 .show-ticket{
-    background-color: cadetblue;
-    padding-bottom: 13%;
+    margin-left: 39%;
 }

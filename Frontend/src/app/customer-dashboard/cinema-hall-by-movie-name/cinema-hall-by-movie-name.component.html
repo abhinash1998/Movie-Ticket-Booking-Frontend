@@ -8,12 +8,14 @@
 
 <h4 *ngIf="error" class="text-center"> {{errorMessage}}</h4>
 
-
-<ul *ngFor="let showDate of showDates" class="show-time">
-   <li> <button  (click)="clickCard(showDate.value)" id="primary" mat-flat-button color="primary">{{showDate.value | date:"EEEE, MMMM d"}}
-        </button>
-        </li>
-        </ul>
+<div class="option">
+    <h3>Select Show Date</h3>
+    <mat-select  (selectionChange)="onChange()" [(value)]="selectedShowDate">
+        <mat-option *ngFor="let showDate of showDates" [value]="showDate.value">
+            {{showDate.value | date:"EEEE, MMMM d"}}
+        </mat-option>
+    </mat-select>
+</div>
 
 <mat-card class="show-card" *ngFor="let show of cinemaHallByShowDate"> 
     <mat-card-content>

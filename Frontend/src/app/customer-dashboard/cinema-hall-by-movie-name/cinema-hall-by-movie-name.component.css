@@ -28,3 +28,14 @@
 h4{
   margin-top: 10%;
 }
+
+.option{
+  margin-left: 10%;
+  margin-top: 2%;
+}
+
+.mat-select-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

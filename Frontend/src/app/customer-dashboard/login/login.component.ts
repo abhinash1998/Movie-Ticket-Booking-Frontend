@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, of } from 'rxjs';
 import { UserService } from 'src/app/Services/user.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +11,15 @@ import { UserService } from 'src/app/Services/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  previousUrl!: string;
   loginForm: FormGroup;
   loginActionIsActive: boolean = true;
   error: boolean = false;
   errorMessage!: string;
 
-  constructor(private fb: FormBuilder, private userContext: UserService, private router: Router) {
+  constructor(private fb: FormBuilder, private userContext: UserService,
+    private router: Router, private _location: Location) {
+
     this.loginForm = this.fb.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]]
@@ -44,8 +47,10 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('loggedUser', res.result.fullName);
           localStorage.setItem('customerId', res.result._id);
           localStorage.setItem('isLogin', 'true');
-          this.router.navigate(['/user/movie-list']);
+          this._location.back();
         }
+
+
 
       })
   }

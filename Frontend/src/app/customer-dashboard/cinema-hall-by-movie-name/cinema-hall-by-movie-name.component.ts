@@ -27,7 +27,8 @@ export class CinemaHallByMovieNameComponent implements OnInit {
   movieDetails: any;
   error: boolean = false;
   errorMessage!: string;
-  
+  selectedShowDate:any;
+
   constructor(private route: ActivatedRoute, private router: Router,
     private showContext: ShowService, private movieContext: MovieService) { }
 
@@ -65,15 +66,16 @@ export class CinemaHallByMovieNameComponent implements OnInit {
         })
   }
 
-  clickCard(value: any) {
-    this.showDate = new Date(value).toLocaleDateString("en-GB", {
+  onChange() {
+  
+    this.showDate = new Date(this.selectedShowDate).toLocaleDateString("en-GB", {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
     });
 
-    this.showDateTime = value
-    this.showContext.showCinemaHallsAndStartTimeByMovieIdAndShowDate(this.movieId, this.cityName, value)
+    this.showDateTime = this.selectedShowDate
+    this.showContext.showCinemaHallsAndStartTimeByMovieIdAndShowDate(this.movieId, this.cityName, this.selectedShowDate)
       .pipe(takeWhile(() => this.theatreActionIsActive))
       .subscribe(
         {

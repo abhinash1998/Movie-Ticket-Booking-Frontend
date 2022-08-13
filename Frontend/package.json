@@ -22,10 +22,12 @@
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
     "@ngneat/until-destroy": "^9.2.1",
+    "@stripe/stripe-js": "^1.35.0",
     "bootstrap": "^5.2.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
     "mat-timepicker": "^5.1.5",
+    "ngx-stripe": "^14.1.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
