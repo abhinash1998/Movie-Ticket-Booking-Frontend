@@ -14,11 +14,11 @@ export class AddNewMovieComponent implements OnInit {
   safeUrl: any;
   movieForm: FormGroup;
   movieActionIsActive: boolean = true;
-  moviesDisplay: any = []
-  cityDisplay:any;
+  moviesDisplay: any = [];
+  cityDisplay: any;
 
   constructor(private fb: FormBuilder, private movieContext: MovieService,
-    private router: Router, private cityContext:CityService) {
+    private router: Router, private cityContext: CityService) {
     this.movieForm = this.fb.group({
       title: ['', [Validators.required]],
       releaseDate: ['', [Validators.required]],
@@ -39,7 +39,8 @@ export class AddNewMovieComponent implements OnInit {
     this.getAllCities();
     this.movieContext.getMovies().pipe(takeWhile(() => this.movieActionIsActive)).subscribe(
       {
-        next: (res) =>{  this.moviesDisplay = res.result;
+        next: (res) => {
+          this.moviesDisplay = res.result;
         },
         error: (error) => console.log(error)
       })
@@ -53,7 +54,7 @@ export class AddNewMovieComponent implements OnInit {
   getAllCities() {
     this.cityContext.getAllCities().pipe(takeWhile(() => this.movieActionIsActive)).subscribe(
       {
-        next: (res) =>{  
+        next: (res) => {
           this.cityDisplay = res.result;
         },
         error: (error) => console.log(error)
@@ -65,15 +66,15 @@ export class AddNewMovieComponent implements OnInit {
     this.movieContext.addMovie(this.movieForm.value)
       .pipe(takeWhile(() => this.movieActionIsActive)).subscribe(
         {
-          next: () =>{
-            // this.router.navigate(['/TicketBooking/movies']);
+          next: () => {
+            this.router.navigate(['/TicketBooking/movies']);
           },
           error: (error) => console.log(error)
         })
   }
 
   ngOnDestroy() {
-    this.movieActionIsActive = false
+    this.movieActionIsActive = false;
   }
 
 }

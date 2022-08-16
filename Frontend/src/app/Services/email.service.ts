@@ -8,11 +8,11 @@ import { environment } from 'src/environments/environment';
 })
 export class EmailService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  sendEmail(emailBody:any, emailId:any): Observable<any>{
+  sendEmail(emailBody: any, emailId: any): Observable<any> {
 
-    const emailData = {emailBody, emailId};
+    const emailData = { emailBody, emailId };
     return this.http.post<any>(`${environment.baseUrl}/sendEmail`, emailData);
   }
 }

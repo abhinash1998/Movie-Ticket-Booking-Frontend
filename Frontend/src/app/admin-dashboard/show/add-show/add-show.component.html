@@ -1,74 +1,73 @@
 <h1 mat-dialog-title>Add Show</h1>
 
 <mat-dialog-content>
-    <form class="example-form" (ngSubmit)='addShow()' [formGroup]='showForm'>
-      <mat-error *ngIf="error"> {{errorMessage}}</mat-error>
+  <form class="example-form" (ngSubmit)='addShow()' [formGroup]='showForm'>
+    <mat-error *ngIf="error"> {{errorMessage}}</mat-error>
 
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Show Date</mat-label>
-            <input type="date" matInput formControlName="showDate">
-            <mat-error>Show Date is <strong>required</strong></mat-error>
-        </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Show Date</mat-label>
+      <input type="date" matInput formControlName="showDate">
+      <mat-error>Show Date is <strong>required</strong></mat-error>
+    </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Start Time</mat-label>
-            <input matInput formControlName="startTime" matTimepicker>
-            <mat-error>Start Time is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-         
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>End Time</mat-label>
-            <input matInput formControlName="endTime" matTimepicker>
-            <mat-error>End Time is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Start Time</mat-label>
+      <input matInput formControlName="startTime" matTimepicker>
+      <mat-error>Start Time is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Select City</mat-label>
-            <mat-select formControlName="cityName" (selectionChange)="onChange()" [(value)]="selectedCity" required> 
-              <mat-option *ngFor="let city of cityDisplay" [value]="city.value">
-                {{city.option}}
-              </mat-option>
-            </mat-select>
-            <mat-error>Please choose a City</mat-error>
-          </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>End Time</mat-label>
+      <input matInput formControlName="endTime" matTimepicker>
+      <mat-error>End Time is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Select Movie</mat-label>
-            <mat-select formControlName="movieName" required>
-              <mat-option *ngFor="let movie of moviesDisplay" [value]="movie.title">
-                {{movie.title}}
-              </mat-option>
-            </mat-select>
-            <mat-error>Please choose an Movie</mat-error>
-          </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Select City</mat-label>
+      <mat-select formControlName="cityName" (selectionChange)="onChange()" [(value)]="selectedCity" required>
+        <mat-option *ngFor="let city of cityDisplay" [value]="city.value">
+          {{city.option}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Please choose a City</mat-error>
+    </mat-form-field>
 
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Select Cinema</mat-label>
-            <mat-select formControlName="cinemaName"  (selectionChange)="selectCinema()" [(value)]="selectedCinema" required>
-              <mat-option *ngFor="let cinema of cinemaDisplay" [value]="cinema.value">
-                {{cinema.option}}
-              </mat-option>
-            </mat-select>
-            <mat-error>Please choose cinema</mat-error>
-          </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Select Movie</mat-label>
+      <mat-select formControlName="movieName" required>
+        <mat-option *ngFor="let movie of moviesDisplay" [value]="movie.title">
+          {{movie.title}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Please choose an Movie</mat-error>
+    </mat-form-field>
 
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Select Cinema Hall</mat-label>
-            <mat-select formControlName="cinemaHallName" required>
-              <mat-option *ngFor="let cinemaHall of cinemaHallDisplay" [value]="cinemaHall.value">
-                {{cinemaHall.option}}
-              </mat-option>
-            </mat-select>
-            <mat-error>Please choose Cinema Hall</mat-error>
-          </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Select Cinema</mat-label>
+      <mat-select formControlName="cinemaName" (selectionChange)="selectCinema()" [(value)]="selectedCinema" required>
+        <mat-option *ngFor="let cinema of cinemaDisplay" [value]="cinema.value">
+          {{cinema.option}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Please choose cinema</mat-error>
+    </mat-form-field>
 
-          
-        <button mat-flat-button color="primary">Register Show</button>
-    </form>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Select Cinema Hall</mat-label>
+      <mat-select formControlName="cinemaHallName" required>
+        <mat-option *ngFor="let cinemaHall of cinemaHallDisplay" [value]="cinemaHall.value">
+          {{cinemaHall.option}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Please choose Cinema Hall</mat-error>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary">Register Show</button>
+  </form>
 </mat-dialog-content>
 
 <div mat-dialog-actions>
-    <button mat-flat-button id="warn" color="warn" [mat-dialog-close]>Cancel</button>
+  <button mat-flat-button id="warn" color="warn" [mat-dialog-close]>Cancel</button>
 </div>

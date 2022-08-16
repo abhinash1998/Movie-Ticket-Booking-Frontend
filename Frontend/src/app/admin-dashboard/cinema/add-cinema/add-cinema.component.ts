@@ -13,8 +13,10 @@ export class AddCinemaComponent implements OnInit {
 
   cinemaForm: FormGroup;
   cinemaActionIsActive: boolean = true;
-  cityDisplay:any;
-  constructor(private fb: FormBuilder, private cinemaContext: CinemaService, private cityContext:CityService) {
+  cityDisplay: any;
+
+  constructor(private fb: FormBuilder, private cinemaContext: CinemaService,
+     private cityContext: CityService) {
     this.cinemaForm = this.fb.group({
       cinemaName: ['', [Validators.required]],
       cinemaLocation: ['', [Validators.required]],
@@ -25,13 +27,13 @@ export class AddCinemaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllCities()
+    this.getAllCities();
   }
 
   getAllCities() {
     this.cityContext.getAllCities().pipe(takeWhile(() => this.cinemaActionIsActive)).subscribe(
       {
-        next: (res) =>{  
+        next: (res) => {
           this.cityDisplay = res.result;
         },
         error: (error) => console.log(error)
@@ -42,7 +44,7 @@ export class AddCinemaComponent implements OnInit {
     this.cinemaContext.addNewCinema(this.cinemaForm.value)
       .pipe(takeWhile(() => this.cinemaActionIsActive)).subscribe(
         {
-          next: () =>{
+          next: () => {
             window.location.reload();
           },
           error: (error) => console.log(error)
@@ -50,7 +52,7 @@ export class AddCinemaComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.cinemaActionIsActive = false
+    this.cinemaActionIsActive = false;
   }
 
 }

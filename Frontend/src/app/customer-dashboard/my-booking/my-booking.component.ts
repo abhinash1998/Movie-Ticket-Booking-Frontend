@@ -17,21 +17,20 @@ export class MyBookingComponent implements OnInit {
   length!: number;
   pageSize: number = 5;
   pageSizeOptions: any = [5, 15, 50];
-  customerId:any;
+  customerId: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private bookingContext: BookingService) { }
 
   ngOnInit(): void {
     this.customerId = localStorage.getItem('customerId');
-    console.log(this.customerId)
     this.getBookingsByUserId(this.customerId)
   }
 
-  getBookingsByUserId(customerId:string) {
+  getBookingsByUserId(customerId: string) {
     this.bookingContext.getBookingByUserId(customerId).pipe(takeWhile(() => this.bookingActionIsActive)).subscribe(
       {
-        next: (res) =>{  
+        next: (res) => {
           this.bookingDisplay.data = res.result;
           this.length = this.bookingDisplay.data.length;
         },

@@ -2,16 +2,16 @@ table {
   width: 100%;
 }
 
-.mat-primary{
+.mat-primary {
   margin-left: 88%;
   margin-top: 2%;
 }
-  
-h4{
+
+h4 {
   margin-left: 40%;
 }
 
-.mat-icon{
+.mat-icon {
   color: red;
   cursor: pointer;
 }
@@ -20,4 +20,4 @@ h4{
   display: flex;
   justify-content: center;
   align-items: center;
-} 
+}

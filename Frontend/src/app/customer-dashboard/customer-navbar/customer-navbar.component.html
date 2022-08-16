@@ -8,7 +8,7 @@
     <a mat-button *ngIf="login" routerLink="/user/booking-history">My Bookings</a>
     <a mat-button *ngIf="login" (click)="logOutUser()" routerLink="/user/login">Logout</a>
     <div class="option">
-        <mat-select (selectionChange)="onChange()" [(value)]="selectedCity" >
+        <mat-select (selectionChange)="onChange()" [(value)]="selectedCity">
             <mat-option *ngFor="let city of cityDisplay" [value]="city.value">
                 {{city.option}}
             </mat-option>

@@ -35,14 +35,14 @@ export class CinemaHallComponent implements OnInit {
   showCinemaHall() {
     this.cinemaHallContext.showCinemaHall().pipe(takeWhile(() => this.cinemaActionIsActive)).subscribe(
       {
-        next: (res) =>{  
+        next: (res) => {
           this.cinemaHallDisplay.data = res.result;
           this.length = this.cinemaHallDisplay.data.length;
         },
         error: (error) => console.log(error)
       })
   }
-  
+
   openDialog() {
     this.dialog
       .open(AddCinemaHallComponent)
@@ -62,7 +62,7 @@ export class CinemaHallComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.cinemaActionIsActive = false
+    this.cinemaActionIsActive = false;
   }
 
 }

@@ -20,7 +20,7 @@ export class ShowTicketComponent implements OnInit {
 
   ngOnInit(): void {
     this.customerId = localStorage.getItem('customerId');
-    this.getLatestBookingByUserId(this.customerId)
+    this.getLatestBookingByUserId(this.customerId);
   }
 
   getLatestBookingByUserId(customerId: string) {
@@ -49,6 +49,4 @@ export class ShowTicketComponent implements OnInit {
   ngOnDestroy() {
     this.showTicketActionIsActive = false;
   }
-
-
 }

@@ -11,7 +11,7 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
-  addMovie(movie:IMovie): Observable<IMovie> {
+  addMovie(movie: IMovie): Observable<IMovie> {
 
     const movieData: any = new FormData();
 
@@ -38,12 +38,14 @@ export class MovieService {
   getMovieById(movieId: string): Observable<any> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("movieId", movieId);
+    
     return this.http.get(`${environment.baseUrl}/getMovieById`, { params: queryParams });
   }
 
   deleteMovie(movieId: string): Observable<any> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("movieId", movieId);
+
     return this.http.get(`${environment.baseUrl}/deleteMovie`, { params: queryParams });
   }
 }

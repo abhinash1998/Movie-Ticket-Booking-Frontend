@@ -72,12 +72,8 @@ export class AddShowComponent implements OnInit {
                 this.cinemaDisplay = res.result;
               },
               error: (error) => console.log(error)
-            })
-        
+            })    
   }
-
-
-  
 
   selectCinema() {
     this.cinemaHallContext.getCinemaHallByCinemaName(this.selectedCinema).pipe(takeWhile(() => this.showActionIsActive)).subscribe(
@@ -104,6 +100,6 @@ export class AddShowComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.showActionIsActive = false
+    this.showActionIsActive = false;
   }
 }

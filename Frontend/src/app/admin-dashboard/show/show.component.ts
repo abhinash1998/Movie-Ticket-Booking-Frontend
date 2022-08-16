@@ -15,7 +15,8 @@ import { AddShowComponent } from './add-show/add-show.component';
 export class ShowComponent implements OnInit {
 
   showActionIsActive: boolean = true;
-  displayedColumns: string[] = ['showDate', 'startTime', 'endTime', 'title', 'cinemaName','cinemaHallName','cityName'];
+  displayedColumns: string[] = ['showDate', 'startTime', 'endTime', 'title', 
+  'cinemaName', 'cinemaHallName', 'cityName'];
   showDisplay = new MatTableDataSource([]);
   length!: number;
   pageSize: number = 5;
@@ -23,8 +24,8 @@ export class ShowComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  
-  constructor(private dialog: MatDialog, private showContext:ShowService) { }
+
+  constructor(private dialog: MatDialog, private showContext: ShowService) { }
 
   ngOnInit(): void {
     this.getShow();
@@ -33,7 +34,7 @@ export class ShowComponent implements OnInit {
   getShow() {
     this.showContext.getShow().pipe(takeWhile(() => this.showActionIsActive)).subscribe(
       {
-        next: (res) =>{  
+        next: (res) => {
           this.showDisplay.data = res.result;
           this.length = this.showDisplay.data.length;
         },

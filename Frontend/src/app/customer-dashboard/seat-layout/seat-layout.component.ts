@@ -3,11 +3,8 @@ import { Router } from '@angular/router';
 import { takeWhile } from 'rxjs';
 import { IBooking } from 'src/app/Interfaces/IBooking.interface';
 import { BookingService } from 'src/app/Services/booking.service';
-import { EmailService } from 'src/app/Services/email.service';
 import { MovieService } from 'src/app/Services/movie.service';
-import { PaymentService } from 'src/app/Services/payment.service';
 import { ShowService } from 'src/app/Services/show.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-seat-layout',
@@ -16,14 +13,14 @@ import { environment } from 'src/environments/environment';
 })
 export class SeatLayoutComponent implements OnInit {
 
-  columnNumber: any = []
-  rowNumber: any = []
+  columnNumber: any = [];
+  rowNumber: any = [];
   convertNumberToAlphabet!: number;
   theatreDetails: any;
   seatLayoutActionIsActive: boolean = true;
-  columns: number = 10
+  columns: number = 10;
   rows: any;
-  description: any
+  description: any;
   movieDetails: any;
   storedSeats: any = [];
   customerId: any;
@@ -42,7 +39,7 @@ export class SeatLayoutComponent implements OnInit {
         error: (error) => console.log(error)
       })
 
-    this.getSeats(this.description.totalSeats)
+    this.getSeats(this.description.totalSeats);
     this.getMovieDetails(this.description.movieId);
   }
 
@@ -62,11 +59,11 @@ export class SeatLayoutComponent implements OnInit {
 
     for (let i = 0; i < this.rows; i++) {
       this.convertNumberToAlphabet = i + 65;
-      this.rowNumber.push({ value: String.fromCharCode(this.convertNumberToAlphabet) })
+      this.rowNumber.push({ value: String.fromCharCode(this.convertNumberToAlphabet) });
     }
 
     for (let j = 0; j < this.columns; j++) {
-      this.columnNumber.push({ value: j + 1 })
+      this.columnNumber.push({ value: j + 1 });
     }
 
   }

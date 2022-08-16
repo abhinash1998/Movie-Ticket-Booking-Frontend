@@ -3,17 +3,14 @@
 <h4>Cinema Hall</h4>
 
 <div class="form-field">
-<mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input
-      matInput
-      (keyup)="applyFilter($event)"
-      placeholder="Search"/>
-  </mat-form-field>
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Search" />
+    </mat-form-field>
 </div>
 
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="cinemaHallDisplay"  matSort>
+    <table mat-table [dataSource]="cinemaHallDisplay" matSort>
 
         <ng-container matColumnDef="cinemaHallName">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Cinema Hall Name</th>

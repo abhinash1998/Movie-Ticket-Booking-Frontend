@@ -18,16 +18,16 @@ export class CinemaHallByMovieNameComponent implements OnInit {
   showDisplay: any;
   cinemaHallName!: string;
   showDateTime!: Date;
-  showDates: any = []
+  showDates: any = [];
   cinema: any;
-  cinemaHallByShowDate: any = []
+  cinemaHallByShowDate: any = [];
   showTime!: Date;
   distinctTheatreName: any;
   filterCinemaHallByStartTime: any;
   movieDetails: any;
   error: boolean = false;
   errorMessage!: string;
-  selectedShowDate:any;
+  selectedShowDate: any;
 
   constructor(private route: ActivatedRoute, private router: Router,
     private showContext: ShowService, private movieContext: MovieService) { }
@@ -67,7 +67,7 @@ export class CinemaHallByMovieNameComponent implements OnInit {
   }
 
   onChange() {
-  
+
     this.showDate = new Date(this.selectedShowDate).toLocaleDateString("en-GB", {
       year: "numeric",
       month: "2-digit",
@@ -122,7 +122,7 @@ export class CinemaHallByMovieNameComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.theatreActionIsActive = false
+    this.theatreActionIsActive = false;
   }
 
 }

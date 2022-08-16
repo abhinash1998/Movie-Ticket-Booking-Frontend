@@ -1,4 +1,3 @@
-
 <app-customer-navbar></app-customer-navbar>
 
 <div class="movie-details">
@@ -10,25 +9,21 @@
 
 <div class="option">
     <h3>Select Show Date</h3>
-    <mat-select  (selectionChange)="onChange()" [(value)]="selectedShowDate">
+    <mat-select (selectionChange)="onChange()" [(value)]="selectedShowDate">
         <mat-option *ngFor="let showDate of showDates" [value]="showDate.value">
             {{showDate.value | date:"EEEE, MMMM d"}}
         </mat-option>
     </mat-select>
 </div>
 
-<mat-card class="show-card" *ngFor="let show of cinemaHallByShowDate"> 
+<mat-card class="show-card" *ngFor="let show of cinemaHallByShowDate">
     <mat-card-content>
         <b>{{show.cinemaHall}}</b>
-    
+
         <ul *ngFor="let detail of show.details" class="show-time">
-            <li><button mat-flat-button id="primary" 
-                (click)="navigateToSeatLayoutPage(detail.cinemaHallName,show.cinemaHall,detail.totalSeats,
-                detail.startTime)"
-            color="primary">{{detail.startTime | date:"hh:mm a"}}</button></li>
-            </ul>
-        
+            <li><button mat-flat-button id="primary" (click)="navigateToSeatLayoutPage(detail.cinemaHallName,show.cinemaHall,detail.totalSeats,
+                detail.startTime)" color="primary">{{detail.startTime | date:"hh:mm a"}}</button></li>
+        </ul>
+
     </mat-card-content>
-  </mat-card>
-
-
+</mat-card>

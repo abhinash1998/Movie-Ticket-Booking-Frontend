@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
   getMovies() {
     this.movieContext.getMovies().pipe(takeWhile(() => this.dashboardActionIsActive)).subscribe(
       {
-        next: (res) =>{  
+        next: (res) => {
           this.movieLength = res.result.length;
         },
         error: (error) => console.log(error)
@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
   getCinemas() {
     this.cinemaContext.showCinema().pipe(takeWhile(() => this.dashboardActionIsActive)).subscribe(
       {
-        next: (res) =>{  
+        next: (res) => {
           this.cinemaLength = res.data.result.length;
         },
         error: (error) => console.log(error)
@@ -48,7 +48,7 @@ export class DashboardComponent implements OnInit {
   getBookings() {
     this.bookingContext.getBookings().pipe(takeWhile(() => this.dashboardActionIsActive)).subscribe(
       {
-        next: (res) =>{  
+        next: (res) => {
           this.bookingLength = res.result.length;
         },
         error: (error) => console.log(error)

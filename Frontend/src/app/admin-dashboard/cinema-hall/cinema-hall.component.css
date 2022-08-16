@@ -1,19 +1,18 @@
 table {
-    width: 100%;
-  }
+  width: 100%;
+}
 
-.mat-primary{
-    margin-left: 88%;
-    margin-top: 2%;
-  }
+.mat-primary {
+  margin-left: 88%;
+  margin-top: 2%;
+}
 
-h4{
-    margin-left: 40%;
-  } 
-  
-  .form-field {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  } 
-  
+h4 {
+  margin-left: 40%;
+}
+
+.form-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

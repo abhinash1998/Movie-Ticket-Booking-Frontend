@@ -12,14 +12,14 @@ export class MovieListByCityNameComponent implements OnInit {
   moviesDisplay: any = [];
   movieActionIsActive: boolean = true;
   selectedCity: any;
- 
+
   constructor(private cityContext: CityService) { }
 
   ngOnInit(): void {
     this.cityContext.citySelection.subscribe(
       {
-        next: () =>{
-          this.selectedCity =  localStorage.getItem('selectedCity');
+        next: () => {
+          this.selectedCity = localStorage.getItem('selectedCity');
           this.getMoviesByCityName(this.selectedCity)
         },
         error: (error) => console.log(error)
@@ -29,7 +29,7 @@ export class MovieListByCityNameComponent implements OnInit {
   getMoviesByCityName(cityName: string) {
     this.cityContext.getMoviesByCityName(cityName).pipe(takeWhile(() => this.movieActionIsActive)).subscribe(
       {
-        next: (res) =>{
+        next: (res) => {
           this.moviesDisplay = res.result
         },
         error: (error) => console.log(error)

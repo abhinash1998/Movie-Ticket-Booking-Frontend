@@ -7,8 +7,9 @@
                 <h4>Booking Ticket</h4>
                 <b>Booking Id: </b><span>{{ticketDetails._id}}</span><br /><br />
                 <b>Customer Name: </b><span>{{ticketDetails.customerId.fullName}}</span><br /><br />
-                <b>Theatre Name: </b><span>{{ticketDetails.cinemaName}},{{ticketDetails.cinemaHallName}}</span><br /><br />
-                <b>Show Information: </b><span>{{ticketDetails.showDate | date:"EEEE, MMMM d"}}, 
+                <b>Theatre Name:
+                </b><span>{{ticketDetails.cinemaName}},{{ticketDetails.cinemaHallName}}</span><br /><br />
+                <b>Show Information: </b><span>{{ticketDetails.showDate | date:"EEEE, MMMM d"}},
                     {{ticketDetails.startTime | date:"hh:mm a"}}</span><br /><br />
                 <b>Booking Date: </b><span>{{ticketDetails.timeStamp | date: 'longDate'}}</span><br /><br />
                 <b>No of Seats: </b><span>{{ticketDetails.numberOfSeats}}</span><br /><br />

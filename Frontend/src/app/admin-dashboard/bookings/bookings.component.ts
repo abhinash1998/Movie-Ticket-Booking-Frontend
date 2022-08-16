@@ -12,8 +12,7 @@ import { BookingService } from 'src/app/Services/booking.service';
 })
 export class BookingsComponent implements OnInit {
 
-  displayedColumns: string[] = [ 'fullName','movieName',
-  'timeStamp','action'];
+  displayedColumns: string[] = ['fullName', 'movieName','timeStamp', 'action'];
   bookingDisplay = new MatTableDataSource([]);
   bookingActionIsActive: boolean = true;
   length!: number;
@@ -23,7 +22,7 @@ export class BookingsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  
+
   constructor(private bookingContext: BookingService) { }
 
   ngOnInit(): void {
@@ -32,7 +31,7 @@ export class BookingsComponent implements OnInit {
 
   getBookings() {
     this.bookingContext.getBookings().pipe(takeWhile(() => this.bookingActionIsActive)).subscribe({
-      next: (res) =>{
+      next: (res) => {
         this.bookingDisplay.data = res.result;
         this.length = this.bookingDisplay.data.length;
       },

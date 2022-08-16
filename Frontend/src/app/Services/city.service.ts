@@ -10,7 +10,7 @@ import { ICity } from '../Interfaces/ICity.interface';
 export class CityService {
 
   public citySelection = new BehaviorSubject<any>({ selectedCity: "" });
-  
+
   constructor(private http: HttpClient) { }
 
 

@@ -23,10 +23,9 @@ export class CinemaComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  
+
   constructor(private cinemaContext: CinemaService, public dialog: MatDialog) {
   }
-
 
   ngOnInit(): void {
     this.showCinema();
@@ -35,14 +34,14 @@ export class CinemaComponent implements OnInit {
   showCinema() {
     this.cinemaContext.showCinema().pipe(takeWhile(() => this.cinemaActionIsActive)).subscribe(
       {
-        next: (res) =>{  
+        next: (res) => {
           this.cinemaDisplay.data = res.data.result;
           this.length = this.cinemaDisplay.data.length;
         },
         error: (error) => console.log(error)
       })
   }
-  
+
   openDialog() {
     this.dialog
       .open(AddCinemaComponent)
@@ -63,8 +62,6 @@ export class CinemaComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.cinemaActionIsActive = false
+    this.cinemaActionIsActive = false;
   }
-
-
 }

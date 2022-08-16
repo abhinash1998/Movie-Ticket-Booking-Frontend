@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'booking', component: BookingsComponent },
   { path: 'show', component: ShowComponent },
   { path: 'addCity', component: CityComponent },
-  { path: 'booking-details/:bookingId', component: BookingDetailsComponent  }
+  { path: 'booking-details/:bookingId', component: BookingDetailsComponent }
 ];
 
 @NgModule({

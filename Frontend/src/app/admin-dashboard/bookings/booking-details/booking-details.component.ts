@@ -9,10 +9,10 @@ import { BookingService } from 'src/app/Services/booking.service';
   styleUrls: ['./booking-details.component.css']
 })
 export class BookingDetailsComponent implements OnInit {
-  bookingActionIsActive:boolean = true;
+  bookingActionIsActive: boolean = true;
   bookingId!: string;
-  bookingDetails:any;
-  constructor(private bookingContext:BookingService, private route: ActivatedRoute) { }
+  bookingDetails: any;
+  constructor(private bookingContext: BookingService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -31,7 +31,6 @@ export class BookingDetailsComponent implements OnInit {
         },
         error: (error) => console.log(error)
       })
-
   }
 
   ngOnDestroy() {

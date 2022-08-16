@@ -47,7 +47,7 @@ export class MoviesComponent implements OnInit {
   getMovies() {
     this.movieContext.getMovies().pipe(takeWhile(() => this.movieActionIsActive)).subscribe(
       {
-        next: (res) =>{  
+        next: (res) => {
           this.moviesDisplay.data = res.result;
           this.length = this.moviesDisplay.data.length;
         },

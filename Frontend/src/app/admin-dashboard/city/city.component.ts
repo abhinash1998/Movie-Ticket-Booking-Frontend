@@ -26,12 +26,11 @@ export class CityComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   addCity() {
     this.cityContext.addCity(this.cityForm.value)
       .pipe(takeWhile(() => this.showActionIsActive)).subscribe(
         {
-          next: () =>{
+          next: () => {
             window.location.reload();
           },
           error: (error) => {
@@ -42,7 +41,6 @@ export class CityComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.showActionIsActive = false
+    this.showActionIsActive = false;
   }
-
 }

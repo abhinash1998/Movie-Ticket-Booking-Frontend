@@ -16,7 +16,8 @@ export class MovieDetailsComponent implements OnInit {
   movieActionIsActive: boolean = true;
   movieDetails: any;
   trailerLink!: string;
-  constructor(private route: ActivatedRoute, private movieContext: MovieService, 
+
+  constructor(private route: ActivatedRoute, private movieContext: MovieService,
     private _sanitizer: DomSanitizer, private router: Router) { }
 
   ngOnInit(): void {
@@ -31,7 +32,7 @@ export class MovieDetailsComponent implements OnInit {
   getMovieDetails(movieId: string) {
 
     this.movieContext.getMovieById(movieId).pipe(takeWhile(() => this.movieActionIsActive)).subscribe({
-      next: (res) =>     {
+      next: (res) => {
         this.movieDetails = res.result;
         this.movieDetails.trailerLink = this._sanitizer.bypassSecurityTrustResourceUrl(this.movieDetails.trailerLink)
       },
@@ -46,11 +47,9 @@ export class MovieDetailsComponent implements OnInit {
     return duration;
   }
 
-  bookTicket(){
-  this.router.navigate([`/user/cinema-hall/${this.movieId}/city/${this.cityName}`]);
+  bookTicket() {
+    this.router.navigate([`/user/cinema-hall/${this.movieId}/city/${this.cityName}`]);
   }
-
- 
 
   ngOnDestroy() {
     this.movieActionIsActive = false;

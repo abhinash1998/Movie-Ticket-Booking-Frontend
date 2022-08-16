@@ -9,9 +9,11 @@ import { IShow } from '../Interfaces/IShow.interface';
 })
 export class ShowService {
 
-  public showSubject = new BehaviorSubject<any>({ movieId: "", cityName: "", 
-  showDate: "", startTime: "", theatreName: "" });
-  
+  public showSubject = new BehaviorSubject<any>({
+    movieId: "", cityName: "",
+    showDate: "", startTime: "", theatreName: ""
+  });
+
   constructor(private http: HttpClient) { }
 
   createShow(show: IShow): Observable<IShow> {
@@ -28,6 +30,7 @@ export class ShowService {
     queryParams = queryParams.append("movieId", movieId);
     queryParams = queryParams.append("cityName", cityName);
     queryParams = queryParams.append("showDate", showDate);
+
     return this.http.get(`${environment.baseUrl}/showCinemaHallsAndStartTimeByMovieIdAndShowDate`,
       { params: queryParams });
   }
@@ -36,10 +39,8 @@ export class ShowService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("movieId", movieId);
     queryParams = queryParams.append("cityName", cityName);
+
     return this.http.get(`${environment.baseUrl}/getShowDatesByMovieIdAndCityName`,
       { params: queryParams });
   }
-
-  
-
 }
