@@ -10,8 +10,17 @@
         <img mat-card-image [src]="movie.imagePath">
 
         <mat-card-content>
-            <h4>{{movie.title}}</h4>
-            <p>{{movie.language}}</p>
+            
+            <h4 matTooltipPosition="above"
+            [matTooltip]="movie.title" 
+            aria-label="Button that displays a tooltip that hides when scrolled out of the container">
+            {{movie.title}}</h4>
+            
+            <p matTooltipPosition="above"
+            [matTooltip]="movie.language"
+            aria-label="Button that displays a tooltip that hides when scrolled out of the container">
+            {{movie.language}}</p>
+
         </mat-card-content>
     </mat-card>
 </div>
