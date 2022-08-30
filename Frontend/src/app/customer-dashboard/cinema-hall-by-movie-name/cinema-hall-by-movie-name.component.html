@@ -7,13 +7,15 @@
 
 <h4 *ngIf="error" class="text-center"> {{errorMessage}}</h4>
 
-<div class="option">
+<div *ngIf="!error">
     <h3>Select Show Date</h3>
+    <div class="option">
     <mat-select (selectionChange)="onChange()" [(value)]="selectedShowDate">
         <mat-option *ngFor="let showDate of showDates" [value]="showDate.value">
             {{showDate.value | date:"EEEE, MMMM d"}}
         </mat-option>
     </mat-select>
+</div>
 </div>
 
 <mat-card class="show-card" *ngFor="let show of cinemaHallByShowDate">

@@ -1,22 +1,28 @@
-<div class="make-payment">
+<app-customer-navbar></app-customer-navbar>
 
-    <h4>Make Payment</h4>
-    <form class="example-form" (ngSubmit)="makePayment()" [formGroup]="paymentForm">
+<mat-card class="example-card">
+    <mat-card-content>
+        
+            <h4>Make Payment</h4>
 
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Name</mat-label>
-            <input type="text" matInput formControlName="name">
-            <mat-error>Name is <strong>required</strong></mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Email</mat-label>
-            <input type="email" matInput formControlName="email">
-            <mat-error>Email is <strong>required</strong>
-            </mat-error>
-        </mat-form-field>
-
-        <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
-
-        <button mat-flat-button color="primary">Pay ₹{{description.amount}}</button>
-    </form>
+            <form class="example-form" (ngSubmit)="makePayment()" [formGroup]="paymentForm">
+        
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input type="text" matInput formControlName="name">
+                    <mat-error>Name is <strong>required</strong></mat-error>
+                </mat-form-field>
+        
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput  formControlName="email">
+                    <mat-error>Email is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+        
+                <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+        
+                <button mat-flat-button color="primary">Pay ₹{{description.amount}}</button>
+            </form>
+    </mat-card-content>
+</mat-card>

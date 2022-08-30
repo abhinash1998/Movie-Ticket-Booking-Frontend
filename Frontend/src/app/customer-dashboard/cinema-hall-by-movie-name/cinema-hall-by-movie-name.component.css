@@ -9,7 +9,6 @@
     display: inline-block;
   }
 
-
   .show-card {
     width: 92%;
     margin-left: 2%;
@@ -29,9 +28,15 @@
     margin-top: 10%;
   }
 
-  .option {
+  h3{
     margin-left: 10%;
     margin-top: 2%;
+  }
+
+  .option {
+    margin-right: 74%;
+    margin-left: 11%;
+    margin-top: 1%;
   }
 
   .mat-select-value {
@@ -39,3 +44,4 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+ 

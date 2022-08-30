@@ -19,6 +19,7 @@ import { CinemaHallByMovieNameComponent } from './cinema-hall-by-movie-name/cine
 import { SeatLayoutComponent } from './seat-layout/seat-layout.component';
 import { MyBookingComponent } from './my-booking/my-booking.component';
 import { MatTableModule } from '@angular/material/table'
+import { MatTooltipModule } from '@angular/material/tooltip'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ShowTicketComponent } from './show-ticket/show-ticket.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
@@ -51,6 +52,7 @@ import { NgxStripeModule } from 'ngx-stripe';
     MatTableModule,
     MatPaginatorModule,
     MatIconModule,
+    MatTooltipModule,
     NgxStripeModule.forRoot('pk_test_51LQVt5SIWQnYJ3odEwV3uCQfIPXou7S6EwoFpM8vBLw7bYQqMfdCsMDCniRkUWwGRhB1yfcfNmmKgx80gbZD0k1P009WVhrFSU')
   ]
 })

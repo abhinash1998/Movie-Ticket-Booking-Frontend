@@ -8,6 +8,13 @@
     width: 100%;
 }
 
+.example-card{
+    width: 44%;
+    margin-left: 26%;
+    margin-top: 2%;
+    padding-bottom: 2%;
+} 
+
 .make-payment {
     margin-left: 30%;
     margin-top: 2%;
@@ -18,3 +25,4 @@
     margin-top: 6%;
     width: 53%;
 }
+

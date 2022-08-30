@@ -11,3 +11,15 @@
   .add-movie{
       margin-left: 30%;
   }
+
+  .file-input {
+    display: none;
+  }
+
+  .file-upload{
+    padding-bottom: 2%;
+  }
+
+  ::ng-deep .mat-select-panel .mat-option-text {
+    font-size: small;
+  }

@@ -1,6 +1,8 @@
 <app-customer-navbar></app-customer-navbar>
-<div class="add-user">
 
+<mat-card class="example-card">
+    <mat-card-content>
+        
     <h4>Register with us</h4>
     <form class="example-form" (ngSubmit)='register()' [formGroup]='signUpForm'>
         <mat-error *ngIf="error"> {{errorMessage}}</mat-error>
@@ -36,4 +38,5 @@
 
         <button mat-flat-button color="primary">Register Now</button>
     </form>
-</div>
+</mat-card-content>
+</mat-card>

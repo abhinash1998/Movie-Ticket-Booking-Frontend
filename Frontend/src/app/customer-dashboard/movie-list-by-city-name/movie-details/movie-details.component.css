@@ -4,11 +4,13 @@
     cursor: pointer;
     margin-left: 48%;
     margin-top: -24%;
+    padding-bottom: 2%;
 }
 
 .movie-card {
     max-width: 700px;
     margin-left: 2%;
+    padding-bottom: 2%;
 }
 
 iframe {
@@ -18,16 +20,20 @@ iframe {
 
 h4 {
     margin-top: 3%;
-    color: aliceblue;
     margin-left: 2%;
 }
 
 .mat-flat-button {
-    margin-left: 75%;
+    margin-left: 39%;
 }
 
 .movie-details {
     background: url(../../../../assets/Images/images.jpg) no-repeat center;
     background-size: cover;
     background-attachment: fixed;
+    padding-bottom: 5%;
+}
+
+.movie-description{
+    padding-bottom: 5%;
 }

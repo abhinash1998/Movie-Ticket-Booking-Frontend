@@ -16,7 +16,7 @@ export class AddNewMovieComponent implements OnInit {
   movieActionIsActive: boolean = true;
   moviesDisplay: any = [];
   cityDisplay: any;
-
+  fileName = '';
   constructor(private fb: FormBuilder, private movieContext: MovieService,
     private router: Router, private cityContext: CityService) {
     this.movieForm = this.fb.group({
@@ -48,7 +48,13 @@ export class AddNewMovieComponent implements OnInit {
 
   uploadBanner($event: any) {
     const file: File = $event.target.files[0]
-    this.movieForm.patchValue({ imagePath: file });
+
+    if (file) {
+      this.fileName = file.name;
+
+      this.movieForm.patchValue({ imagePath: file });
+  }
+   
   }
 
   getAllCities() {

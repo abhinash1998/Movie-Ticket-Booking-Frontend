@@ -57,11 +57,19 @@
         Language is <strong>required</strong>
       </mat-error>
     </mat-form-field>
+    
+    <input type="file" class="file-input"
+       (change)="uploadBanner($event)" #fileUpload>
 
+  <div class="file-upload">
 
-    <mat-label>Banner</mat-label>
-    <input type="file" (change)="uploadBanner($event)">
+   {{fileName || "No file uploaded yet."}}
 
+    <button mat-mini-fab color="primary" 
+      (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+    </button>
+</div>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Trailer Link</mat-label>

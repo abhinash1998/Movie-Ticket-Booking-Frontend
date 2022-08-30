@@ -1,5 +1,8 @@
 <app-customer-navbar></app-customer-navbar>
-<div class="login-user">
+
+
+<mat-card class="example-card">
+    <mat-card-content>
 
     <h4>Login us</h4>
     <form class="example-form" (ngSubmit)='login()' [formGroup]='loginForm'>
@@ -21,4 +24,6 @@
 
         <button mat-flat-button color="primary">Login</button>
     </form>
-</div>
+
+</mat-card-content>
+</mat-card>

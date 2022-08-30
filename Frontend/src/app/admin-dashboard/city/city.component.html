@@ -1,7 +1,10 @@
 <app-navbar></app-navbar>
-<div class="add-city">
 
-  <h4>Add New City</h4>
+
+<mat-card class="example-card">
+  <mat-card-content>
+
+    <h4>Add New City</h4>
   <form class="example-form" (ngSubmit)='addCity()' [formGroup]='cityForm'>
     <mat-error *ngIf="error"> {{errorMessage}}</mat-error>
 
@@ -20,4 +23,6 @@
 
     <button mat-flat-button color="primary">Save City</button>
   </form>
-</div>
+
+</mat-card-content>
+</mat-card>

@@ -1,7 +1,7 @@
 .example-card {
-    width: 55%;
+    width: 74%;
     height: 60%;
-    margin-left: 3%;
+    margin-left: -16%;
     margin-top: 2%;
 }
 
@@ -12,4 +12,8 @@
 
 .show-ticket {
     margin-left: 39%;
+}
+
+.card-content{
+    margin-left: 2%;
 }

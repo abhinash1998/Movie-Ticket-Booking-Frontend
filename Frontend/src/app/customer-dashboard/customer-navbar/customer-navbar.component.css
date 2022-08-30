@@ -5,3 +5,11 @@
 .option{
   margin-left: 10%;
 }
+
+::ng-deep .mat-select-panel .mat-option-text {
+  font-size: small;
+}
+
+a:hover {
+  color: white;
+}

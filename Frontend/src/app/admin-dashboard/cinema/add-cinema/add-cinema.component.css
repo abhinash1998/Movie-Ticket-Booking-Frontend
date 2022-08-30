@@ -11,3 +11,7 @@
 #warn {
   margin-left: 81%
 }
+
+::ng-deep .mat-select-panel .mat-option-text {
+  font-size: small;
+}

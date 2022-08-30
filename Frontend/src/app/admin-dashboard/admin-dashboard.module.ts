@@ -31,6 +31,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { BookingDetailsComponent } from './bookings/booking-details/booking-details.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout'
+import { NbThemeModule,NbLayoutModule,NbCardModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,7 @@ import { MatDividerModule } from '@angular/material/divider';
     CommonModule,
     AdminDashboardRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -67,7 +71,11 @@ import { MatDividerModule } from '@angular/material/divider';
     MatIconModule,
     MatSortModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    FlexLayoutModule,
+    NbThemeModule.forRoot(),
+    NbCardModule,
+    NbLayoutModule
   ]
 })
 export class AdminDashboardModule { }
